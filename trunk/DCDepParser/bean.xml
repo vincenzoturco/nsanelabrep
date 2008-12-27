@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<MarkTest>
+<thingies>Moe</thingies>
+<thingies>Larry</thingies>
+<thingies>Curly</thingies>
+<thingies>Shemp</thingies>
+<thingies>Curly Joe</thingies>
+<foo>5</foo>
+<bar>This is the bar value</bar>
+<sub>
+<age>35</age>
+<name>Mark</name>
+</sub>
+</MarkTest>
