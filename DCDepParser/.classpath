@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="/home/vin/storage/lavori/graphdc/dtdparser-1.21/dtdparser121.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/sarge/storage/lavori/graphdc/jox-1.17b3.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/sarge/storage/lavori/graphdc/xerces-2_9_0/resolver.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/sarge/storage/lavori/graphdc/xerces-2_9_0/serializer.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/sarge/storage/lavori/graphdc/xerces-2_9_0/xercesImpl.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/sarge/storage/lavori/graphdc/xerces-2_9_0/xercesSamples.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/sarge/storage/lavori/graphdc/xerces-2_9_0/xml-apis.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/sarge/storage/lavori/graphdc/Jung/collections-generic-4.01.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/sarge/storage/lavori/graphdc/Jung/colt-1.2.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/sarge/storage/lavori/graphdc/Jung/concurrent-1.3.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/sarge/storage/lavori/graphdc/Jung/jung-3d-2.0-beta1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/sarge/storage/lavori/graphdc/Jung/jung-3d-demos-2.0-beta1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/sarge/storage/lavori/graphdc/Jung/jung-algorithms-2.0-beta1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/sarge/storage/lavori/graphdc/Jung/jung-api-2.0-beta1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/sarge/storage/lavori/graphdc/Jung/jung-api-2.0-beta1-tests.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/sarge/storage/lavori/graphdc/Jung/jung-graph-impl-2.0-beta1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/sarge/storage/lavori/graphdc/Jung/jung-io-2.0-beta1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/sarge/storage/lavori/graphdc/Jung/jung-jai-2.0-beta1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/sarge/storage/lavori/graphdc/Jung/jung-jai-samples-2.0-beta1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/sarge/storage/lavori/graphdc/Jung/jung-samples-2.0-beta1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/sarge/storage/lavori/graphdc/Jung/jung-visualization-2.0-beta1.jar"/>
+	<classpathentry kind="con" path="com.soyatec.uml.CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
