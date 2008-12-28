@@ -5,6 +5,11 @@ package org.nsanelab.test;
  */
 public class GenericComponent extends BaseComponent{
 
+	public GenericComponent(){
+		super();
+		this.dependencies = new DependencyAggregation();
+	}
+	
 /**
  * @uml.property  name="dependencies"
  * @uml.associationEnd  
@@ -24,7 +29,10 @@ public DependencyAggregation getDependencies() {
  * @uml.property  name="dependencies"
  */
 public void setDependencies(DependencyAggregation dependencies) {
+	if(dependencies!=null){
 	this.dependencies = dependencies;
+	}
+	
 }
 
 @Override

@@ -2,7 +2,6 @@ package org.nsanelab.test;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Paint;
 import java.awt.Stroke;
@@ -15,13 +14,13 @@ import java.util.LinkedList;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.apache.commons.collections15.Transformer;
 
 import com.wutka.jox.JOXBeanInputStream;
 import com.wutka.jox.JOXBeanOutputStream;
 
+import edu.uci.ics.jung.algorithms.layout.CircleLayout;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.graph.DirectedGraph;
@@ -160,12 +159,12 @@ public class TestJOX {
 	private static void visualizzaGrafo(
 			Graph<BaseComponent, GenericDependency> inGraph) {
 		// Layout<V, E>, BasicVisualizationServer<V,E>
-		Layout<BaseComponent, GenericDependency> layout = new FRLayout<BaseComponent, GenericDependency>(
+		Layout<BaseComponent, GenericDependency> layout = new CircleLayout<BaseComponent, GenericDependency>(
 				inGraph);
-		layout.setSize(new Dimension(1024, 768));
+		layout.setSize(new Dimension(1500, 900));
 		BasicVisualizationServer<BaseComponent, GenericDependency> vv = new BasicVisualizationServer<BaseComponent, GenericDependency>(
 				layout);
-		vv.setPreferredSize(new Dimension(1024, 768));
+		vv.setPreferredSize(new Dimension(1500, 900));
 		// Setup up a new vertex to paint transformer...
 		Transformer<BaseComponent, Paint> vertexPaint = new Transformer<BaseComponent, Paint>() {
 			public Paint transform(BaseComponent i) {
@@ -191,7 +190,7 @@ public class TestJOX {
 		vv.getRenderContext().setEdgeStrokeTransformer(edgeStrokeTransformer);
 		vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
 		vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller());
-		vv.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);
+		vv.getRenderer().getVertexLabelRenderer().setPosition(Position.AUTO);
 		JFrame frame = new JFrame("Dependency Pattern detector");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().add(vv);

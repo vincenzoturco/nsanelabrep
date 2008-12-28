@@ -10,6 +10,10 @@ public class DependencyAggregation {
  */
 private GenericDependency[] dependency;
 
+public DependencyAggregation(){
+	this.dependency = new GenericDependency[0];
+}
+
 /**
  * @return
  * @uml.property  name="dependency"
