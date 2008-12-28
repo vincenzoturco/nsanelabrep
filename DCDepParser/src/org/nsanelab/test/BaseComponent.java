@@ -1,5 +1,7 @@
 package org.nsanelab.test;
 
+import java.io.File;
+
 /**
  * @author  vin
  */
@@ -37,7 +39,11 @@ public void setVendor(String vendor) {
 }
 @Override
 public String toString() {
-	return this.vendor+"/"+this.name;
+	String retVal;
+	retVal = this.vendor+"/"+this.name;
+	retVal = "..."+retVal.substring(retVal.lastIndexOf('/'));
+	
+	return retVal;
 }
 @Override
 public boolean equals(Object obj) {
