@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_UD-NMNHeEd2n4c0JPv3chg">
+  <elementImport xmi:id="_UKRpgNHeEd2n4c0JPv3chg">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+  </elementImport>
+  <elementImport xmi:id="_UKnAsNHeEd2n4c0JPv3chg">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+  </elementImport>
+  <elementImport xmi:id="_UKnAsdHeEd2n4c0JPv3chg">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#UnlimitedNatural"/>
+  </elementImport>
+  <elementImport xmi:id="_UKnnwNHeEd2n4c0JPv3chg">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Component" xmi:id="_Ya9bkNHeEd2n4c0JPv3chg" name="org.nsanelab.FileSystemManager" clientDependency="__-LKUNHiEd2n4c0JPv3chg">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_CPJEMNHfEd2n4c0JPv3chg" name="getInDir" aggregation="composite"/>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_LDpmwNHfEd2n4c0JPv3chg" name="getOutDir" aggregation="composite"/>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_62ABgNHgEd2n4c0JPv3chg" name="getCfgFile" aggregation="composite"/>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_-tTqQNHgEd2n4c0JPv3chg" name="openStack" aggregation="composite"/>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_MNLvwNHhEd2n4c0JPv3chg" name="saveStack" aggregation="composite"/>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_M8Hc4NHiEd2n4c0JPv3chg" name="createSessionDir" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Component" xmi:id="_ba0CcNHfEd2n4c0JPv3chg" name="Main" clientDependency="_XvYnoNHhEd2n4c0JPv3chg _HDQzINHiEd2n4c0JPv3chg _-TzTMNHiEd2n4c0JPv3chg _e4SSENHjEd2n4c0JPv3chg"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_XvYnoNHhEd2n4c0JPv3chg" supplier="_-tTqQNHgEd2n4c0JPv3chg" client="_ba0CcNHfEd2n4c0JPv3chg"/>
+  <packagedElement xmi:type="uml:Component" xmi:id="_uHzbINHhEd2n4c0JPv3chg" name="org.nsanelab.ConfigManager" clientDependency="_3WW1YNHhEd2n4c0JPv3chg __VGYINHiEd2n4c0JPv3chg">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_v2yFcNHhEd2n4c0JPv3chg" name="getStackCfgXXX" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_3WW1YNHhEd2n4c0JPv3chg" supplier="_62ABgNHgEd2n4c0JPv3chg" client="_uHzbINHhEd2n4c0JPv3chg"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_HDQzINHiEd2n4c0JPv3chg" supplier="_v2yFcNHhEd2n4c0JPv3chg" client="_ba0CcNHfEd2n4c0JPv3chg"/>
+  <packagedElement xmi:type="uml:Component" xmi:id="_58IvYNHiEd2n4c0JPv3chg" name="org.nsanelab.Constants">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_8PXWQNHiEd2n4c0JPv3chg" name="XXX" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_-TzTMNHiEd2n4c0JPv3chg" supplier="_8PXWQNHiEd2n4c0JPv3chg" client="_ba0CcNHfEd2n4c0JPv3chg"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="__VGYINHiEd2n4c0JPv3chg" supplier="_8PXWQNHiEd2n4c0JPv3chg" client="_uHzbINHhEd2n4c0JPv3chg"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="__-LKUNHiEd2n4c0JPv3chg" supplier="_8PXWQNHiEd2n4c0JPv3chg" client="_Ya9bkNHeEd2n4c0JPv3chg"/>
+  <packagedElement xmi:type="uml:Component" xmi:id="_I2Ls0NHjEd2n4c0JPv3chg" name="org.nsanelab.GraphicalMgmt" clientDependency="_N21jQNHjEd2n4c0JPv3chg _RVjs4NHjEd2n4c0JPv3chg _SRLAkNHjEd2n4c0JPv3chg _Udz3QNHjEd2n4c0JPv3chg">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_dav9ENHjEd2n4c0JPv3chg" name="doProcessing" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_N21jQNHjEd2n4c0JPv3chg" supplier="_8PXWQNHiEd2n4c0JPv3chg" client="_I2Ls0NHjEd2n4c0JPv3chg"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_RVjs4NHjEd2n4c0JPv3chg" supplier="_CPJEMNHfEd2n4c0JPv3chg" client="_I2Ls0NHjEd2n4c0JPv3chg"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_SRLAkNHjEd2n4c0JPv3chg" supplier="_LDpmwNHfEd2n4c0JPv3chg" client="_I2Ls0NHjEd2n4c0JPv3chg"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_Udz3QNHjEd2n4c0JPv3chg" supplier="_v2yFcNHhEd2n4c0JPv3chg" client="_I2Ls0NHjEd2n4c0JPv3chg"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_e4SSENHjEd2n4c0JPv3chg" supplier="_dav9ENHjEd2n4c0JPv3chg" client="_ba0CcNHfEd2n4c0JPv3chg"/>
+</uml:Package>

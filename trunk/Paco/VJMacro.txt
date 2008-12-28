@@ -1,0 +1,388 @@
+
+
+macro "VJMacro"{
+
+//inizializzazione costanti globali, dichiarate in coda al codice
+
+cst_tp_blue = "blue";
+cst_tp_green = "green";
+cst_tp_red = "red";
+cst_tp_unk = "unknown";
+
+//fine inizializzazione
+
+//check img aperte
+if(checkOpenImg()!=0){
+return;
+}
+
+//nome sessione
+session_name = getSessionName();
+//apertura dell'image stack
+openStack();
+//creazione directory di output
+createSessionOutDir(session_name, img_file);
+
+//split channels
+run("Split Channels");
+
+//acquisizione id immagine per ciascun segnale
+identifyChannelsId();
+//chiusura immagine segnale blue non necessario
+closeBlueCh();
+//salvo lo stack G
+saveGStack();
+//threshold per verde (modifica il verde)
+doThresholdForGreenCh(20, 135);
+//salvo lo stack GTh
+saveGThStack();
+
+run("Image Calculator...", "image1=["+green_ch_ttl+"] operation=AND image2=["+red_ch_ttl+"] stack");
+saveTassStack();
+//apro il canale green da file
+openStackFromPath(g_path);
+selectImage(nImages);
+run("Merge Channels...", "red=["+getTitle()+"] green=["+green_ch_ttl+"] blue=*None* gray=*None* ");
+saveMostRecentStack("GTass");
+
+
+
+
+}
+
+function showThDialog(){
+
+Dialog.create("Dati utente");
+Dialog.addMessage("Inserire i valori di threshold");
+Dialog.addNumber("Min",30);
+Dialog.addNumber("Max",50);
+Dialog.show();
+retVal = newArray(2);
+retVal[0] = Dialog.getNumber();
+retVal[1] = Dialog.getNumber();
+return retVal;
+}
+
+function saveGStack(){
+//salva lo stack del canale G originario
+saveResult = saveStack(green_ch_id, "Green");
+newGreenTitle = getFileName(saveResult[1]);
+//green_ch_ttl = newGreenTitle;
+g_path = saveResult[1];
+}
+
+function saveGThStack(){
+//salva lo stack del colore G dopo la Threshold
+saveResult = saveStack(green_ch_id, "Green_Th");
+newGreenTitle = getFileName(saveResult[1]);
+//green_ch_ttl = newGreenTitle;
+gth_path = saveResult[1];
+}
+
+function saveTassStack(){
+
+//salva lo stack del colore G dopo la Tass
+saveResult = saveStack(green_ch_id, "Tass");
+newGreenTitle = getFileName(saveResult[1]);
+//green_ch_ttl = newGreenTitle;
+gth_path = saveResult[1];
+
+}
+
+function saveMostRecentStack(stackName){
+
+saveResult = saveStack(nImages, stackName);
+newGreenTitle = getFileName(saveResult[1]);
+//green_ch_ttl = newGreenTitle;
+gth_path = saveResult[1];
+
+}
+
+function doThresholdForGreenCh(thFloor, thCeil){
+userSel = showThDialog();
+selectImage(green_ch_id);
+setThreshold(userSel[0], userSel[1]);
+run("Convert to Mask", "  black");
+
+}
+
+
+//check for open imgs
+function checkOpenImg(){
+
+var retval = 0;
+if(nImages > 0){
+
+var go_on = getBoolean("Attenzione: ci sono immagini aperte.\nLa macro richiesta chiudera' tutte le immagini aperte senza salvare.\nProcedere?");
+if(!go_on){
+retval = -1;
+} else{
+	closeAll();
+	}
+}
+
+return retval;
+}
+
+//identify channels id
+function identifyChannelsId(){
+//acquisizione id immagine per ciascun segnale
+green_ch_id = getGreenId();
+red_ch_id = getRedId();
+blue_ch_id = getBlueId();
+
+green_ch_ttl = getChTitle(green_ch_id);
+blue_ch_ttl = getChTitle(blue_ch_id);
+red_ch_ttl = getChTitle(red_ch_id);
+
+}
+
+
+//selects an image stack
+function openStack(){
+//apertura dell'image stack
+img_file = fileopener();
+content_num = getFileList(File.getParent(img_file));
+run("Image Sequence...", "open="+img_file+" number="+toString(content_num.length)+" starting=1 increment=1 scale=100 file=[] or=[] sort");
+//termine apertura image stack
+
+}
+
+//opens a stack from a specific image path
+function openStackFromPath(img_file){
+content_num = getFileList(File.getParent(img_file));
+//print("stack from path: "+content_num.length);
+run("Image Sequence...", "open="+img_file+" number="+toString(content_num.length)+" starting=1 increment=1 scale=100 file=[] or=[] sort");
+
+
+}
+
+//create session output directory
+function createSessionOutDir(session, in_file_path){
+	var parent_dir, out_dir;
+
+	parent_dir = File.getParent(img_file);
+	out_dir = parent_dir+File.separator+session+"_out";
+	curr_out_dir = out_dir;
+	File.makeDirectory(out_dir);
+
+}
+
+//create stack output subdirectory
+function createOutputSubdir(stack_name){
+retVal = curr_out_dir+File.separator+stack_name;
+File.makeDirectory(retVal);
+return retVal;
+}
+
+//closes all active image windows
+function closeAll(){
+
+while(nImages!=0){
+for(var i=1;i<=nImages;i++){
+		if(isOpen(i)){
+			selectImage(i);
+			close();
+		}
+	}
+}
+
+}
+
+function createIJConf(){
+var home_path;
+var conf_file_path;
+var file_desc;
+home_path = getDirectory("home");
+conf_file_path = home_path+".imagej"+File.separator+"ijconf";
+if(!File.exists(conf_file_path)){
+file_desc = File.open(conf_file_path);
+}
+
+
+
+}
+
+
+//from file's path, the actual file name (with extension) is returned
+function getFileName(path){
+var last_sep_index;
+var last_dot_index;
+var file_name;
+
+last_sep_index= lastIndexOf(path, File.separator);
+last_dot_index = lastIndexOf(path,".");
+
+//file_name = substring(path,last_sep_index+1, last_dot_index);
+file_name = substring(path,last_sep_index+1);
+return file_name;
+
+
+}
+//generates a new file path with suffix "suffix", with same extension
+function composeFilePath(fileName, suffix){
+
+var last_dot_occ;
+var new_path;
+var ext;
+
+last_dot_occ = lastIndexOf(fileName, ".");
+ext = substring(fileName, last_dot_occ);
+
+new_path = substring(fileName, 0, last_dot_occ);
+new_path = new_path + suffix;
+new_path = new_path + ext;
+return new_path;
+
+
+
+}
+
+
+////////////////////////////////////////////////
+function getSessionName(){
+var session_name;
+getDateAndTime(year, month, dayOfWeek, dayOfMonth, hour, minute, second, msec);
+
+session_name = getString("Inserisci il nome di questa sessione (non usare spazi)",toString(year)+toString(month)+toString(dayOfMonth)+toString(hour)+toString(minute)+toString(second));
+return session_name;
+
+}
+//////////////////////////////////////////////////
+function getImageType(title){
+
+
+if(indexOf(title,"blue")!=-1){
+//		print("blue trovato");
+		type = cst_tp_blue;
+	} else if (indexOf(title,"red")!=-1){
+//		print("rosso trovato");
+		type = cst_tp_red;
+	} else if (indexOf(title,"green")!=-1){
+//		print("verde trovato");
+		type = cst_tp_green;
+	} else{
+//		print("canale sconosciuto");
+		type = cst_tp_unk;
+	}
+
+//print(type);
+return type;
+
+
+
+}
+
+//////////////////////////////////////////////////
+function getGreenId(){
+var retVal = -1;
+for(i=1;i<=nImages;i++){
+
+	selectImage(i);
+
+	if(matches(getImageType(getTitle),cst_tp_green)){
+
+		retVal = i;
+		}
+	}
+return retVal;
+
+}
+
+//////////////////////////////////////////////////
+function getRedId(){
+var retVal = -1;
+for(i=1;i<=nImages;i++){
+
+	selectImage(i);
+
+	if(matches(getImageType(getTitle),cst_tp_red)){
+
+		retVal = i;
+		}
+	}
+return retVal;
+
+}
+
+/////////////////////////////////////////////////
+function getBlueId(){
+var retVal = -1;
+for(i=1;i<=nImages;i++){
+
+	selectImage(i);
+
+	if(matches(getImageType(getTitle),cst_tp_blue)){
+
+		retVal = i;
+		}
+	}
+return retVal;
+
+}
+
+/////////////////////////////////////////////////
+function getChTitle(ch_id){
+var retVal;
+selectImage(ch_id);
+retVal = getTitle();
+return retVal;
+
+}
+
+function closeBlueCh(){
+
+selectImage(blue_ch_id);
+close();
+
+}
+
+function saveStack(stackId, stackName){
+	var stackOutDir, commonOutFilename, lastSavedFilename;
+	
+	selectImage(stackId);
+	stackOutDir = createOutputSubdir(stackName);
+	commonOutFilename = stackOutDir+File.separator+stackName;
+	for(var i=1;i<=nSlices;i++){
+		setSlice(i);
+		lastSavedFilename = commonOutFilename+(i-1)+".tif";
+		
+	}
+	commonOutFilename = commonOutFilename+"0000";
+	run("Image Sequence... ", "format=TIFF name="+stackName+" start=0 digits=4 save="+commonOutFilename+".tif");
+	retVal = newArray(2);
+	retVal[0] = stackOutDir;
+	retVal[1] = lastSavedFilename;
+	return retVal;
+
+}
+
+//apre un file in base alla selezione utente e ne ritorna il path
+function fileopener() {
+
+var path;
+
+path = File.openDialog("Seleziona un file");
+return path;
+
+}
+
+
+
+//costanti di colore canale
+var cst_tp_blue;
+var cst_tp_green;
+var cst_tp_red;
+var cst_tp_unk;
+//variabili global per l'id immagine di ciascun canale
+var green_ch_id, red_ch_id, blue_ch_id;
+//variabili globali per il titolo dell'immagine di ciascun segnale
+var green_ch_ttl, red_ch_ttl, blue_ch_ttl;
+//directory e path di salvataggio output
+var curr_out_dir, gth_path, g_path;
+
+var img_file;
+var img_file_name;
+var open_img;
+var session_name;
+var content_num;
