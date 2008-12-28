@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:StateMachine xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_pdUD8NHLEd2-H84zewHXmA" name="Interazioni grafiche per macro IJ">
+  <region xmi:id="_DsTuINHREd2-H84zewHXmA">
+    <subvertex xmi:type="uml:Pseudostate" xmi:id="_E9d0ANHREd2-H84zewHXmA"/>
+    <subvertex xmi:type="uml:State" xmi:id="_HT0AUNHREd2-H84zewHXmA" name="Selezione image stack"/>
+    <subvertex xmi:type="uml:State" xmi:id="_NPJWUNHREd2-H84zewHXmA" name="Selezione nome sessione"/>
+    <subvertex xmi:type="uml:Pseudostate" xmi:id="_wVsM0NHSEd2-H84zewHXmA" kind="choice"/>
+    <subvertex xmi:type="uml:State" xmi:id="_5mRAUNHSEd2-H84zewHXmA" name="Input utente valori numerici per operazioni"/>
+    <subvertex xmi:type="uml:Pseudostate" xmi:id="_EJP24NHTEd2-H84zewHXmA" kind="junction"/>
+    <subvertex xmi:type="uml:State" xmi:id="_YRcUMNHTEd2-H84zewHXmA" name="Elaborazione background: utente visualizza barra di progresso"/>
+    <subvertex xmi:type="uml:State" xmi:id="_5jdHcNHTEd2-H84zewHXmA" name="Visualizzazione: esito operazioni e directory target"/>
+    <subvertex xmi:type="uml:FinalState" xmi:id="_YrFGwNHUEd2-H84zewHXmA"/>
+    <transition xmi:id="_2WnC4NHREd2-H84zewHXmA" target="_HT0AUNHREd2-H84zewHXmA" source="_NPJWUNHREd2-H84zewHXmA"/>
+    <transition xmi:id="_3TlogNHREd2-H84zewHXmA" target="_NPJWUNHREd2-H84zewHXmA" source="_E9d0ANHREd2-H84zewHXmA"/>
+    <transition xmi:id="_w23nQNHSEd2-H84zewHXmA" target="_wVsM0NHSEd2-H84zewHXmA" source="_HT0AUNHREd2-H84zewHXmA"/>
+    <transition xmi:id="_GIkqUNHTEd2-H84zewHXmA" target="_5mRAUNHSEd2-H84zewHXmA" source="_wVsM0NHSEd2-H84zewHXmA"/>
+    <transition xmi:id="_dQzKINHTEd2-H84zewHXmA" target="_YRcUMNHTEd2-H84zewHXmA" source="_5mRAUNHSEd2-H84zewHXmA"/>
+    <transition xmi:id="_dsgOsNHTEd2-H84zewHXmA" target="_YRcUMNHTEd2-H84zewHXmA" source="_wVsM0NHSEd2-H84zewHXmA"/>
+    <transition xmi:id="_9pUwoNHTEd2-H84zewHXmA" target="_5jdHcNHTEd2-H84zewHXmA" source="_YRcUMNHTEd2-H84zewHXmA"/>
+    <transition xmi:id="_Z2aRcNHUEd2-H84zewHXmA" target="_YrFGwNHUEd2-H84zewHXmA" source="_5jdHcNHTEd2-H84zewHXmA"/>
+  </region>
+</uml:StateMachine>
