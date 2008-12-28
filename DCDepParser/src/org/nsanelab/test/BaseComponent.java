@@ -49,6 +49,10 @@ public int hashCode() {
 	return this.name.hashCode()+(30*this.vendor.hashCode());
 }
 
+public boolean isStandard(){
+	return this.vendor.equals("sap.com");
+}
+
 
 
 }
