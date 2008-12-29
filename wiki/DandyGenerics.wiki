@@ -1,0 +1,15 @@
+#summary SAP DC dependency graph generator: brief description and usage
+
+= Introduction =
+
+This project (codename Dandy) provides graphic facilities for inter-DC dependencies detection in SAP NW 7.0 environment.
+Requires JRE 1.6.
+
+
+= Details =
+== Usage ==
+Upon program start, a file chooser is shown to choose the root directory for dependency detection. The program will recursively visit every file and directory in the corresponding subtree, generating a dependency graph for all the *.dcdef* files found. Limits are to be found in the size of the output graph. Graphs with more than 20 vertices tend to be hardly readable. For ease of use, only the last section of the DC name is shown in the graph.
+
+= Used Libraries =
+  * Jung2 for graph generation and graphics
+  * JOX for XML parsing
