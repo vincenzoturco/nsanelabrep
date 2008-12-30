@@ -1,4 +1,4 @@
-package org.nsanelab.dandy.domain;
+package org.nsanelab.dandy.domain.iface;
 
 import java.util.Collection;
 

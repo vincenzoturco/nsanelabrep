@@ -1,4 +1,4 @@
-package org.nsanelab.dandy.domain;
+package org.nsanelab.dandy.domain.iface;
 
 
 public interface IBaseComp {

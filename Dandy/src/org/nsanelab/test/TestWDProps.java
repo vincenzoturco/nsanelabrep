@@ -16,8 +16,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
 import org.apache.commons.collections15.Transformer;
-import org.nsanelab.dandy.xml.BaseCompDefinition;
-import org.nsanelab.dandy.xml.GenericCompDefinition;
+import org.nsanelab.dandy.xml.iface.IGenericCompDefinition;
+import org.nsanelab.dandy.xml.impl.BaseCompDefinition;
+import org.nsanelab.dandy.xml.impl.GenericCompDefinition;
 
 import com.wutka.jox.JOXBeanInputStream;
 import com.wutka.jox.JOXBeanOutputStream;
@@ -61,7 +62,7 @@ public class TestWDProps {
 	public static void main(String[] args) {
 		try {
 
-			GenericCompDefinition gComp;
+			IGenericCompDefinition gComp;
 			GenericDependency[] gDep;
 			DependencyAggregation depAgg;
 			DirectedGraph<BaseCompDefinition, GenericDependency> g = new DirectedSparseGraph<BaseCompDefinition, GenericDependency>();
@@ -117,12 +118,12 @@ public class TestWDProps {
 
 	}
 
-	private static GenericCompDefinition read(String path) throws Exception {
+	private static IGenericCompDefinition read(String path) throws Exception {
 		FileInputStream in = new FileInputStream(path);
 
 		JOXBeanInputStream joxIn = new JOXBeanInputStream(in);
 
-		GenericCompDefinition testBean = (GenericCompDefinition) joxIn
+		IGenericCompDefinition testBean = (IGenericCompDefinition) joxIn
 				.readObject(GenericCompDefinition.class);
 
 		return testBean;
