@@ -16,7 +16,7 @@ Copy the executable jar on your local machine. Type on your shell
 For the time being, after graph generation you need to restart the application to perform a new operation.
 
 == Usage ==
-Upon program start, a file chooser is shown to choose the root directory for dependency detection. The program will recursively visit every file and directory in the corresponding subtree, generating a dependency graph for all the *.dcdef* files found. Limits are to be found in the size of the output graph. Graphs with more than 20 vertices tend to be hardly readable. For ease of use, only the last section of the DC name is shown in the graph.
+Upon program start, a file chooser is shown to choose the root directory for dependency detection. The program will recursively visit every file and directory in the corresponding subtree, generating a dependency graph for all the *.dcdef* files found. Limits are to be found in the size of the output graph. Graphs with more than 20 vertices tend to be hardly readable. As a consequence, we strongly recommend not to select .../.dtc or otherwise high level directories as root. For ease of use, only the last section of the DC name is shown in the graph. 
 
 = Used Libraries =
   * Jung2 for graph generation and graphics
