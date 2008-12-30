@@ -59,6 +59,31 @@ public class GenericDependency {
 		this.pp_ref = pp_ref;
 	}
 
+	/**
+	 * @uml.property  name="dependencyType"
+	 * @uml.associationEnd  inverse="genericDependency:org.nsanelab.dandy.xml.DependencyType"
+	 * @uml.association  name="type"
+	 */
+	private DependencyType dependencyType;
+
+	/**
+	 * Getter of the property <tt>dependencyType</tt>
+	 * @return  Returns the dependencyType.
+	 * @uml.property  name="dependencyType"
+	 */
+	public DependencyType getDependencyType() {
+		return dependencyType;
+	}
+
+	/**
+	 * Setter of the property <tt>dependencyType</tt>
+	 * @param dependencyType  The dependencyType to set.
+	 * @uml.property  name="dependencyType"
+	 */
+	public void setDependencyType(DependencyType dependencyType) {
+		this.dependencyType = dependencyType;
+	}
+
 
 
 	

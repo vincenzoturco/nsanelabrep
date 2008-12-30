@@ -1,4 +1,4 @@
-package org.nsanelab.dandy.xml;
+package org.nsanelab.test;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -16,6 +16,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
 import org.apache.commons.collections15.Transformer;
+import org.nsanelab.dandy.xml.BaseCompDefinition;
+import org.nsanelab.dandy.xml.GenericCompDefinition;
 
 import com.wutka.jox.JOXBeanInputStream;
 import com.wutka.jox.JOXBeanOutputStream;
@@ -29,31 +31,31 @@ import edu.uci.ics.jung.visualization.BasicVisualizationServer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
 
-public class TestJOX {
+public class TestWDProps {
 
 	private static void addComp2Graph(
 			DirectedGraph<BaseCompDefinition, GenericDependency> g, String path)
 			throws Exception {
-		GenericCompDefinition gComp;
-		GenericDependency[] gDep;
-		DependencyAggregation depAgg;
-
-		gComp = read(path);
-		depAgg = gComp.getDependencies();
-		gDep = depAgg.getDependency();
-		if (!gComp.isStandard()) {
-			g.addVertex(gComp);
-			for (int i = 0; i < gDep.length; i++) {
-
-				if (!g.containsVertex(gComp)) {
-					g.addVertex(gDep[i].getDc_ref());
-				}
-				if (!g.containsEdge(gDep[i])
-						&& !gDep[i].getDc_ref().isStandard()) {
-					g.addEdge(gDep[i], gComp, gDep[i].getDc_ref());
-				}
-			}
-		}
+		// GenericCompDefinition gComp;
+		// Collection<GenericDependency> gDep;
+		// DependencyAggregation depAgg;
+		//
+		// gComp = read(path);
+		// depAgg = gComp.getDependencies();
+		// gDep = depAgg.getDependency();
+		// if (!gComp.isStandard()) {
+		// g.addVertex(gComp);
+		// for (int i = 0; i < gDep.length; i++) {
+		//
+		// if (!g.containsVertex(gComp)) {
+		// g.addVertex(gDep[i].getDc_ref());
+		// }
+		// if (!g.containsEdge(gDep[i])
+		// && !gDep[i].getDc_ref().isStandard()) {
+		// g.addEdge(gDep[i], gComp, gDep[i].getDc_ref());
+		// }
+		// }
+		// }
 	}
 
 	public static void main(String[] args) {
@@ -65,52 +67,56 @@ public class TestJOX {
 			DirectedGraph<BaseCompDefinition, GenericDependency> g = new DirectedSparseGraph<BaseCompDefinition, GenericDependency>();
 			Collection<String> descList;
 			Iterator<String> descListIt;
-			
-			descList = getDescriptors(chooseRoot());
-			descListIt = descList.iterator();
-			
-			while(descListIt.hasNext()){
-				addComp2Graph(g, descListIt.next());
-			}
-			
-//			addComp2Graph(g,
-//					"/home/sarge/storage/sapspace/DCDepParser/comps/master/.dcdef");
-//			addComp2Graph(g,
-//					"/home/sarge/storage/sapspace/DCDepParser/comps/slave/.dcdef");
-//			addComp2Graph(g,
-//					"/home/sarge/storage/sapspace/DCDepParser/comps/master/.dcdef2");
-//			addComp2Graph(g,
-//					"/home/sarge/storage/sapspace/DCDepParser/comps/master/.dcdef3");
-			
+
+			System.out
+					.println(readLib("./wdProperties"));
+
+			// descList = getDescriptors(chooseRoot());
+			// descListIt = descList.iterator();
+			//
+			// while (descListIt.hasNext()) {
+			// System.out.println(read(descListIt.next()));
+			// }
+
+			// addComp2Graph(g,
+			// "/home/sarge/storage/sapspace/DCDepParser/comps/master/.dcdef");
+			// addComp2Graph(g,
+			// "/home/sarge/storage/sapspace/DCDepParser/comps/slave/.dcdef");
+			// addComp2Graph(g,
+			// "/home/sarge/storage/sapspace/DCDepParser/comps/master/.dcdef2");
+			// addComp2Graph(g,
+			// "/home/sarge/storage/sapspace/DCDepParser/comps/master/.dcdef3");
+
 			// System.out.println(g.toString());
-			visualizzaGrafo(g);
+			// visualizzaGrafo(g);
 
 		} catch (Exception exc) {
 			exc.printStackTrace();
 		}
 	}
-	
-	private static String chooseRoot(){
+
+	private static String chooseRoot() {
 		JFrame frame = new JFrame("Selezione directory root");
-		JFileChooser chooser = new JFileChooser ();
+		JFileChooser chooser = new JFileChooser();
 		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		String retVal = "";
-		//chooser.addChoosableFileFilter (new FileNameExtensionFilter ("File XML", "xml"));
+		// chooser.addChoosableFileFilter (new FileNameExtensionFilter
+		// ("File XML", "xml"));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
-		int returnVal = chooser.showOpenDialog (frame);
+		int returnVal = chooser.showOpenDialog(frame);
 
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-		    retVal = chooser.getSelectedFile().getAbsolutePath();
-		    
+			retVal = chooser.getSelectedFile().getAbsolutePath();
+
 		}
 		frame.setVisible(false);
 		frame.dispose();
 		return retVal;
 
 	}
-	
+
 	private static GenericCompDefinition read(String path) throws Exception {
 		FileInputStream in = new FileInputStream(path);
 
@@ -118,6 +124,16 @@ public class TestJOX {
 
 		GenericCompDefinition testBean = (GenericCompDefinition) joxIn
 				.readObject(GenericCompDefinition.class);
+
+		return testBean;
+	}
+
+	private static LibProp readLib(String path) throws Exception {
+		FileInputStream in = new FileInputStream(path);
+
+		JOXBeanInputStream joxIn = new JOXBeanInputStream(in);
+
+		LibProp testBean = (LibProp) joxIn.readObject(LibProp.class);
 
 		return testBean;
 	}
@@ -133,19 +149,19 @@ public class TestJOX {
 
 		dep = new GenericDependency();
 		// dep.setType(DependencyType.TYPE_BUILDTIME);
-		dep.setDc_ref(master);
+	//	dep.setDc_ref(master);
 
 		dep2 = new GenericDependency();
 		// dep2.setType(DependencyType.TYPE_BUILDTIME);
-		dep2.setDc_ref(master);
+		//dep2.setDc_ref(master);
 
 		depAgg = new DependencyAggregation();
-		depAgg.setDependency(new GenericDependency[] { dep, dep2 });
+		// depAgg.setDependency(new GenericDependency[] { dep, dep2 });
 
 		slave = new GenericCompDefinition();
 		slave.setVendor("org.nsanelab");
 		slave.setName("mySlave");
-		slave.setDependencies(depAgg);
+//		slave.setDependencies(depAgg);
 
 		FileOutputStream fileOut = new FileOutputStream("mytest.xml");
 		JOXBeanOutputStream joxOut = new JOXBeanOutputStream(fileOut);
@@ -214,15 +230,20 @@ public class TestJOX {
 				if (childrenList[i].isDirectory()) {
 					descPathList.addAll(getDescriptors(childrenList[i]
 							.getAbsolutePath()));
-				} else{
-					if(childrenList[i].getName().indexOf(".dcdef")!=-1){
-							descPathList.add(childrenList[i].getAbsolutePath());
+				} else {
+					if (childrenList[i].getName().indexOf(".dcdef") != -1) {
+						descPathList.add(childrenList[i].getAbsolutePath());
+					}
 				}
+
 			}
 
 		}
-		
-	}
 		return descPathList;
-}
+	}
+
+	
+
+	
+
 }
