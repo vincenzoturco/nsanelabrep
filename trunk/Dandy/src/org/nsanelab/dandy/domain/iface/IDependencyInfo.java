@@ -1,4 +1,6 @@
-package org.nsanelab.dandy.domain;
+package org.nsanelab.dandy.domain.iface;
+
+import org.nsanelab.dandy.domain.EDependencyTime;
 
 
 public interface IDependencyInfo {

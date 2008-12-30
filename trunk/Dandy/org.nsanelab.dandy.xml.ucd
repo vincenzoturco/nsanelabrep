@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" size="877,535" id="org.nsanelab.dandy.xml" metadata="uml2-1.0" initialized="true" tag="1000" key="32303037303533312D313030302044616E64792F76696E">
+  <children xsi:type="editmodel:ClassEditModel" location="330,210" size="226,122" id="org.nsanelab.dandy.xml/DependencyAggregation" runTimeClassModel="DependencyAggregation(),setDependency([Lorg.nsanelab.dandy.xml.iface.IGenericDependency;),getDependency(),toString()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="168,72">
+      <children xsi:type="editmodel:MethodEditModel" name="DependencyAggregation" id="org.nsanelab.dandy.xml/DependencyAggregation#DependencyAggregation()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toString" id="org.nsanelab.dandy.xml/DependencyAggregation#toString()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setDependency" id="org.nsanelab.dandy.xml/DependencyAggregation#setDependency([Lorg.nsanelab.dandy.xml.iface.IGenericDependency;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getDependency" id="org.nsanelab.dandy.xml/DependencyAggregation#getDependency()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="PropsDefinition" location="77,435" size="156,30" id="org.nsanelab.dandy.xml/PropsDefinition" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=1;Product=eUML2" autoName="false"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" showPopupBars="true" showConnectionHandles="true" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true" showDependencyStereotype="true" showInterfaceStereotype="true" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+</editmodel:ClassDiagramEditModel>
