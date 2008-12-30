@@ -12,4 +12,8 @@
   <elementImport xmi:id="_P2is0NQ2Ed2ZsZBpJ80JSg">
     <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
   </elementImport>
+  <packagedElement xmi:type="uml:Component" xmi:id="_hkDIoNZgEd23qNOqNPV9dg" name="org.nsanelab.dandy.graph"/>
+  <packagedElement xmi:type="uml:Component" xmi:id="_mtiK8NZgEd23qNOqNPV9dg" name="org.nsanelab.dandy.xml"/>
+  <packagedElement xmi:type="uml:Component" xmi:id="_oGAZwNZgEd23qNOqNPV9dg" name="org.nsanelab.dandy.graphics"/>
+  <packagedElement xmi:type="uml:Component" xmi:id="_qBcywNZgEd23qNOqNPV9dg" name="org.nsanelab.dandy.domain"/>
 </uml:Package>
