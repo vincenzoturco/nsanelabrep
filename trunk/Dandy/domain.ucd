@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="domain" size="1026,535" id="" metadata="uml2-1.0" initialized="true" scrolledX="257" tag="1000" key="32303037303533312D313030302044616E64792F76696E">
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="domain" size="1026,535" id="" metadata="uml2-1.0" initialized="true" tag="1000" key="32303037303533312D313030302044616E64792F76696E">
   <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.1/@sourceConnections.0" name="IBaseComp" location="147,81" size="211,102" id="org.nsanelab.dandy.domain.iface/IBaseComp" runTimeClassModel="vendor,name">
     <children xsi:type="editmodel:CompartmentEditModel" size="100,36">
       <children xsi:type="editmodel:AttributeEditModel" name="name" id="org.nsanelab.dandy.domain.iface/IBaseComp#name"/>

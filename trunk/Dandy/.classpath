@@ -24,5 +24,6 @@
 	<classpathentry exported="true" kind="lib" path="/home/sarge/storage/lavori/graphdc/Jung/jung-samples-2.0-beta1.jar"/>
 	<classpathentry exported="true" kind="lib" path="/home/sarge/storage/lavori/graphdc/Jung/jung-visualization-2.0-beta1.jar"/>
 	<classpathentry kind="con" path="com.soyatec.uml.CONTAINER"/>
+	<classpathentry kind="lib" path="/home/sarge/eclipse/plugins/org.junit_3.8.2.v200706111738/junit.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -26,11 +26,7 @@ public String toString() {
 
 
 
-/**
- * @uml.property  name="dependencies"
- * @uml.associationEnd  
- */
-private IDependencyAggregation dependencies;
+
 
 
 
@@ -38,7 +34,8 @@ private IDependencyAggregation dependencies;
  * @see org.nsanelab.dandy.xml.IGenericCompDefinition#getDependencies()
  */
 /**
- * @return
+ * Getter of the property <tt>dependencies</tt>
+ * @return  Returns the dependencies.
  * @uml.property  name="dependencies"
  */
 public IDependencyAggregation getDependencies() {
@@ -51,15 +48,28 @@ public IDependencyAggregation getDependencies() {
  * @see org.nsanelab.dandy.xml.IGenericCompDefinition#setDependencies(org.nsanelab.dandy.xml.DependencyAggregation)
  */
 /**
- * @param dependencies
+ * Setter of the property <tt>dependencies</tt>
+ * @param dependencies  The dependencies to set.
  * @uml.property  name="dependencies"
  */
 public void setDependencies(IDependencyAggregation dependencies) {
 	if (dependencies != null) {
 		this.dependencies = dependencies;
 	}
-	
 }
+
+
+
+
+
+
+
+/**
+ * @uml.property  name="dependencies"
+ * @uml.associationEnd  inverse="genericCompDefinition:org.nsanelab.dandy.xml.iface.IDependencyAggregation"
+ * @uml.association  name="dependencies"
+ */
+private IDependencyAggregation dependencies;
 
 
 

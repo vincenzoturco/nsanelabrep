@@ -8,18 +8,20 @@ public interface IDependencyAggregation {
 	public abstract String toString();
 
 	/**
-	 * Getter of the property <tt>dependency</tt>
-	 * @return   Returns the dependency.
-	 * @uml.property  name="dependency"
-	 * @uml.associationEnd  multiplicity="(0 -1)" container="org.nsanelab.dandy.xml.iface.IGenericDependency"
+	 * @return  Returns the dependencies.
+	 * @uml.property  name="dependencies"
+	 * @uml.associationEnd  multiplicity="(0 -1)" dimension="1" ordering="true" container="org.nsanelab.dandy.xml.iface.IGenericDependency[]" inverse="iDependencyAggregation:org.nsanelab.dandy.xml.iface.IGenericDependency"
 	 */
 	public abstract IGenericDependency[] getDependency();
 
 	/**
-	 * Setter of the property <tt>dependency</tt>
-	 * @param dependency   The dependency to set.
-	 * @uml.property  name="dependency"
+	 * Setter of the property <tt>dependencies</tt>
+	 * @param dependencies  The dependencies to set.
+	 * @uml.property  name="dependencies"
 	 */
 	public abstract void setDependency(IGenericDependency[] dependency);
+
+	
+	
 
 }
