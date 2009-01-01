@@ -24,13 +24,13 @@ public interface ICompMetadata {
 	 * @uml.property   name="iSharingDependency"
 	 * @uml.associationEnd   multiplicity="(0 -1)" dimension="1" ordering="true" container="org.nsanelab.dandy.xml.ISharingDependency[]" inverse="iCompMetadata:org.nsanelab.dandy.xml.iface.ISharingDependency"
 	 */
-	public ISharingDependency[] getISharingDependencies();
+	public ISharingDependency[] getSharingDependencies();
 
 	/**
 	 * Setter of the property <tt>iSharingDependency</tt>
 	 * @param iSharingDependency  The sharingDependencies to set.
 	 * @uml.property  name="iSharingDependency"
 	 */
-	public void setISharingDependencies(ISharingDependency[] sharingDependency);
+	public void setSharingDependencies(ISharingDependency[] sharingDependency);
 
 }

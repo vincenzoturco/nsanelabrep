@@ -14,7 +14,7 @@ public class CompMetadata implements ICompMetadata{
 	}
 
 	@Override
-	public ISharingDependency[] getISharingDependencies() {
+	public ISharingDependency[] getSharingDependencies() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -26,7 +26,7 @@ public class CompMetadata implements ICompMetadata{
 	}
 
 	@Override
-	public void setISharingDependencies(ISharingDependency[] sharingDependency) {
+	public void setSharingDependencies(ISharingDependency[] sharingDependency) {
 		// TODO Auto-generated method stub
 		
 	}
