@@ -1,4 +1,4 @@
-package org.nsanelab.test;
+package org.nsanelab.prototypes;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

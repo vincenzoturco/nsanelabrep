@@ -9,6 +9,7 @@
 	</ProjectProperties.JcoReferences>
 	<ProjectProperties.LibraryReferences>
 		<LibraryReference libraryName="it.sap/fsh~frmz~lib~costanti" name="0">
+		fanculo
 		</LibraryReference>
 	</ProjectProperties.LibraryReferences>
 </ProjectProperties>

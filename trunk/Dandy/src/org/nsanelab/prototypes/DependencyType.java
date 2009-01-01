@@ -1,4 +1,4 @@
-package org.nsanelab.test;
+package org.nsanelab.prototypes;
 
 /**
  * @author  vin
