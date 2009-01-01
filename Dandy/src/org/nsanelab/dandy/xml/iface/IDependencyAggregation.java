@@ -1,19 +1,23 @@
 package org.nsanelab.dandy.xml.iface;
 
+/**
+ * @author  vin
+ */
 public interface IDependencyAggregation {
 
 	public abstract String toString();
 
 	/**
 	 * Getter of the property <tt>dependency</tt>
-	 * @return  Returns the dependency.
+	 * @return   Returns the dependency.
 	 * @uml.property  name="dependency"
+	 * @uml.associationEnd  multiplicity="(0 -1)" container="org.nsanelab.dandy.xml.iface.IGenericDependency"
 	 */
 	public abstract IGenericDependency[] getDependency();
 
-	/** 
+	/**
 	 * Setter of the property <tt>dependency</tt>
-	 * @param dependency  The dependency to set.
+	 * @param dependency   The dependency to set.
 	 * @uml.property  name="dependency"
 	 */
 	public abstract void setDependency(IGenericDependency[] dependency);

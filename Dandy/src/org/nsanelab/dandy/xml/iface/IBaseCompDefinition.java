@@ -1,5 +1,8 @@
 package org.nsanelab.dandy.xml.iface;
 
+/**
+ * @author  vin
+ */
 public interface IBaseCompDefinition {
 
 	/**
@@ -9,7 +12,7 @@ public interface IBaseCompDefinition {
 	public abstract String getName();
 
 	/**
-	 * @param name
+	 * @param  name
 	 * @uml.property  name="name"
 	 */
 	public abstract void setName(String name);
@@ -21,7 +24,7 @@ public interface IBaseCompDefinition {
 	public abstract String getVendor();
 
 	/**
-	 * @param vendor
+	 * @param  vendor
 	 * @uml.property  name="vendor"
 	 */
 	public abstract void setVendor(String vendor);

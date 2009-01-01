@@ -1,4 +1,4 @@
-package org.nsanelab.test;
+package org.nsanelab.prototypes;
 
 public class LibRef {
 	String libraryName;

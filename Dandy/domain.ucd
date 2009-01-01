@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="domain" size="1026,535" id="" metadata="uml2-1.0" initialized="true" scrolledX="-50" tag="1000" key="32303037303533312D313030302044616E64792F76696E">
-  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.1/@sourceConnections.0" name="IBaseComp" location="147,81" size="180,102" id="org.nsanelab.dandy.domain.iface/IBaseComp" runTimeClassModel="vendor,name">
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="domain" size="1026,535" id="" metadata="uml2-1.0" initialized="true" scrolledX="257" tag="1000" key="32303037303533312D313030302044616E64792F76696E">
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.1/@sourceConnections.0" name="IBaseComp" location="147,81" size="211,102" id="org.nsanelab.dandy.domain.iface/IBaseComp" runTimeClassModel="vendor,name">
     <children xsi:type="editmodel:CompartmentEditModel" size="100,36">
       <children xsi:type="editmodel:AttributeEditModel" name="name" id="org.nsanelab.dandy.domain.iface/IBaseComp#name"/>
       <children xsi:type="editmodel:AttributeEditModel" name="vendor" id="org.nsanelab.dandy.domain.iface/IBaseComp#vendor"/>
@@ -17,8 +17,8 @@
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="org.nsanelab.dandy.domain.iface/IBaseComp&lt;-org.nsanelab.dandy.domain.iface/IGenericComp" source="//@children.1" target="//@children.0" targetEnd="//@children.1/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:AssociationEndEditModel" location="161,0" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="89,102"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="177,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="105,102"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
@@ -38,7 +38,7 @@
       <children xsi:type="editmodel:AssociationEndEditModel" location="75,0"/>
     </sourceConnections>
   </children>
-  <children xsi:type="editmodel:InterfaceEditModel" name="IDependencyInfo" location="765,225" size="203,102" id="org.nsanelab.dandy.domain.iface/IDependencyInfo" runTimeClassModel="depTime,publicPart">
+  <children xsi:type="editmodel:InterfaceEditModel" name="IDependencyInfo" location="765,225" size="211,102" id="org.nsanelab.dandy.domain.iface/IDependencyInfo" runTimeClassModel="depTime,publicPart">
     <children xsi:type="editmodel:CompartmentEditModel" size="180,36">
       <children xsi:type="editmodel:AttributeEditModel" name="depTime" id="org.nsanelab.dandy.domain.iface/IDependencyInfo#depTime"/>
       <children xsi:type="editmodel:AttributeEditModel" name="publicPart" id="org.nsanelab.dandy.domain.iface/IDependencyInfo#publicPart"/>
@@ -54,17 +54,17 @@
     </children>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:InterfaceEditModel" name="ISharingDependency" location="375,270" size="194,56" id="org.nsanelab.dandy.domain.iface/ISharingDependency" runTimeClassModel="">
+  <children xsi:type="editmodel:InterfaceEditModel" name="ISharingDependency" location="375,270" size="211,56" id="org.nsanelab.dandy.domain.iface/ISharingDependency" runTimeClassModel="">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="org.nsanelab.dandy.domain.iface/IBaseDependency&lt;-org.nsanelab.dandy.domain.iface/ISharingDependency" source="//@children.6" target="//@children.2" targetEnd="//@children.6/@sourceConnections.0/@children.1" sourceEnd="//@children.6/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:AssociationEndEditModel" location="127,0" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="66,120"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="135,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="74,120"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:InterfaceEditModel" name="IUDCDependency" location="571,270" size="180,56" id="org.nsanelab.dandy.domain.iface/IUDCDependency" runTimeClassModel="">
+  <children xsi:type="editmodel:InterfaceEditModel" name="IUDCDependency" location="571,270" size="211,56" id="org.nsanelab.dandy.domain.iface/IUDCDependency" runTimeClassModel="">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
@@ -74,10 +74,11 @@
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:InterfaceEditModel" name="IGenericCompFactory" location="60,425" size="199,56" id="org.nsanelab.dandy.domain.iface/IGenericCompFactory">
+  <children xsi:type="editmodel:InterfaceEditModel" name="IGenericCompFactory" location="60,425" size="211,56" id="org.nsanelab.dandy.domain.iface/IGenericCompFactory" runTimeClassModel="">
     <children xsi:type="editmodel:CompartmentEditModel"/>
     <children xsi:type="editmodel:CompartmentEditModel"/>
     <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
   <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=1;Product=eUML2" autoName="false"/>
   <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">

@@ -4,7 +4,7 @@ import org.nsanelab.dandy.xml.iface.IBaseCompDefinition;
 
 
 /**
- * @author  vin
+ * @author   vin
  */
 public class BaseCompDefinition implements IBaseCompDefinition {
 private String name;
@@ -13,11 +13,19 @@ private String vendor;
 /* (non-Javadoc)
  * @see org.nsanelab.dandy.xml.IBaseCompDefinition#getName()
  */
+/**
+ * @return
+ * @uml.property  name="name"
+ */
 public String getName() {
 	return name;
 }
 /* (non-Javadoc)
  * @see org.nsanelab.dandy.xml.IBaseCompDefinition#setName(java.lang.String)
+ */
+/**
+ * @param name
+ * @uml.property  name="name"
  */
 public void setName(String name) {
 	this.name = name;
@@ -25,11 +33,19 @@ public void setName(String name) {
 /* (non-Javadoc)
  * @see org.nsanelab.dandy.xml.IBaseCompDefinition#getVendor()
  */
+/**
+ * @return
+ * @uml.property  name="vendor"
+ */
 public String getVendor() {
 	return vendor;
 }
 /* (non-Javadoc)
  * @see org.nsanelab.dandy.xml.IBaseCompDefinition#setVendor(java.lang.String)
+ */
+/**
+ * @param vendor
+ * @uml.property  name="vendor"
  */
 public void setVendor(String vendor) {
 	this.vendor = vendor;
