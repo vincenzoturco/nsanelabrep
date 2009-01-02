@@ -27,12 +27,18 @@ public class TestDOM {
 			Element root = doc.getDocumentElement();
 			NodeList nl = root.getElementsByTagName("ProjectProperties.LibraryReferences");
 			Node firstNode = nl.item(0);
-			System.out.println(firstNode.getNodeName()+"; "+firstNode.getNodeValue());
+	//		System.out.println("proj prop: "+firstNode.getNodeName()+"; "+firstNode.getNodeValue());
 			nl = firstNode.getChildNodes();
-			Node myNode = nl.item(1);
-			NamedNodeMap attr = myNode.getAttributes();
-			System.out.println(attr.getNamedItem("libraryName"));
 			
+			for(int i=1;i<nl.getLength();i++){
+				Node myNode = nl.item(i);
+				//System.out.println(myNode.getNodeName()+"; "+myNode.getNodeValue());
+				if(myNode.hasAttributes()){
+				NamedNodeMap attr = myNode.getAttributes();
+				System.out.println(attr.getNamedItem("libraryName").getNodeValue());
+				System.out.println(attr.getNamedItem("name").getNodeValue());
+				}
+				}
 			
 			
 			

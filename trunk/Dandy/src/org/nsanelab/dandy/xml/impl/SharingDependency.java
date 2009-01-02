@@ -5,16 +5,16 @@ import org.nsanelab.dandy.xml.iface.ISharingDependency;
 
 
 public class SharingDependency implements ISharingDependency {
-
+	
+	private BaseCompDefinition baseComp;
 	@Override
-	public IBaseCompDefinition getIBaseCompDefinition() {
-		// TODO Auto-generated method stub
-		return null;
+	public BaseCompDefinition getIBaseCompDefinition() {
+		return this.baseComp;
 	}
 
 	@Override
-	public void setIBaseCompDefinition(IBaseCompDefinition baseCompDefinition) {
-		// TODO Auto-generated method stub
+	public void setIBaseCompDefinition(BaseCompDefinition baseCompDefinition) {
+		this.baseComp = baseCompDefinition;
 
 	}
 

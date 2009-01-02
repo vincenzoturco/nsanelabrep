@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- MetaDataAPI generated on: Wednesday, February 15, 2006 8:38:35 AM CET -->
 <ProjectProperties xmlns="http://xml.sap.com/2002/10/metamodel/webdynpro" xmlns:IDX="urn:sap.com:WebDynpro.ProjectProperties:2.0" mmRelease="6.30" mmVersion="2.0" mmTimestamp="1139989115534" name="ProjectProperties" package="" masterLanguage="it">
-	<ProjectProperties.JcoReferences>
-		<LibraryReference libraryName="WD_MODELDATA_DEST" name="0">
-		</LibraryReference>
-		<LibraryReference libraryName="WD_RFC_METADATA_DEST" name="1">
-		</LibraryReference>
-	</ProjectProperties.JcoReferences>
 	<ProjectProperties.LibraryReferences>
 		<LibraryReference libraryName="it.sap/fsh~frmz~lib~costanti" name="0">
-		fanculo
+		</LibraryReference>
+<LibraryReference libraryName="it.sap/fsh~frmz~lib~bugango" name="0">
+		</LibraryReference>
+<LibraryReference libraryName="it.sap/fsh~frmz~lib~mogambo" name="0">
+		</LibraryReference>
+	</ProjectProperties.LibraryReferences>
+<ProjectProperties.LibraryReferences>
+		<LibraryReference libraryName="it.sap/fsh~frmz~lib~costanti" name="0">
+		</LibraryReference>
+<LibraryReference libraryName="it.sap/fsh~frmz~lib~bugango" name="0">
+		</LibraryReference>
+<LibraryReference libraryName="it.sap/fsh~frmz~lib~mogambo" name="0">
 		</LibraryReference>
 	</ProjectProperties.LibraryReferences>
 </ProjectProperties>
