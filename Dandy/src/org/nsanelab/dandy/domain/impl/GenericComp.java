@@ -54,4 +54,12 @@ public class GenericComp implements IGenericComp {
 		this.vendor = vendor;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		return obj != null && this.getClass().isInstance(obj)
+				&& ((GenericComp) obj).getName().equals(this.getName())
+				&& ((GenericComp) obj).getVendor().equals(this.getVendor());
+
+	}
+
 }

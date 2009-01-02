@@ -28,5 +28,12 @@ public class DependencyInfo implements IDependencyInfo {
 	public void setPublicPart(String publicPart) {
 		this.pp = publicPart;
 	}
+	
+	public boolean equals(Object obj) {
+		return obj != null && this.getClass().isInstance(obj)
+				&& ((DependencyInfo) obj).getPublicPart().equals(this.getPublicPart())
+				&& ((DependencyInfo) obj).getDepTime().equals(this.getDepTime());
+
+	}
 
 }

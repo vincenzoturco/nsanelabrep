@@ -1,6 +1,6 @@
 package org.nsanelab.dandy.xml.iface;
 
-import org.nsanelab.dandy.xml.impl.BaseCompDefinition;
+import org.nsanelab.dandy.xml.impl.GenericCompDefinition;
 import org.nsanelab.dandy.xml.impl.SharingDependency;
 
 
@@ -13,14 +13,14 @@ public interface ICompMetadata {
 	 * @uml.associationEnd   inverse="iCompMetadata:org.nsanelab.dandy.xml.iface.IBaseCompDefinition"
 	 * @uml.association   name="dcData"
 	 */
-	public BaseCompDefinition getDcData();
+	public GenericCompDefinition getDcData();
 
 	/**
 	 * Setter of the property <tt>dcData</tt>
 	 * @param dcData  The dcData to set.
 	 * @uml.property  name="dcData"
 	 */
-	public void setDcData(BaseCompDefinition dcData);
+	public void setDcData(GenericCompDefinition dcData);
 
 	/**
 	 * @return    Returns the sharingDependencies.

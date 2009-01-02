@@ -42,4 +42,8 @@ public interface IBaseDependency {
 	 */
 	public void setInfo(IDependencyInfo info);
 
+		
+	
+		
+
 }

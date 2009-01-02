@@ -43,4 +43,11 @@ public class SharingDependency implements ISharingDependency {
 
 	}
 
+	@Override
+	public boolean equals(Object arg0) {
+		return arg0!=null && this.getClass().isInstance(arg0) && ((SharingDependency)arg0).getTgt().equals(this.getTgt())
+		&& ((SharingDependency)arg0).getSrc().equals(this.getSrc())
+		&& ((SharingDependency)arg0).getInfo().equals(this.getInfo());
+	}
+
 }
