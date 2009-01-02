@@ -6,10 +6,10 @@ import org.nsanelab.dandy.xml.iface.ICompMetadata;
 public class CompMetadata implements ICompMetadata{
 	
 	private SharingDependency[] dependencies;
-	private BaseCompDefinition compDef;
+	private GenericCompDefinition compDef;
 	
 	@Override
-	public BaseCompDefinition getDcData() {
+	public GenericCompDefinition getDcData() {
 		return compDef;
 	}
 
@@ -19,7 +19,7 @@ public class CompMetadata implements ICompMetadata{
 	}
 
 	@Override
-	public void setDcData(BaseCompDefinition dcData) {
+	public void setDcData(GenericCompDefinition dcData) {
 		this.compDef = dcData;
 		
 	}
