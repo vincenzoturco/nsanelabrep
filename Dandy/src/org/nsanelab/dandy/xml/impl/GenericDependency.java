@@ -1,19 +1,17 @@
 package org.nsanelab.dandy.xml.impl;
 
 import org.nsanelab.dandy.domain.EDependencyTime;
-import org.nsanelab.dandy.xml.iface.IBaseCompDefinition;
-import org.nsanelab.dandy.xml.iface.IGenericDependency;
 
 /**
  * @author   vin
  */
-public class GenericDependency implements IGenericDependency {
+public class GenericDependency {
 	//private DependencyType type;
 	/**
 	 * @uml.property  name="dc_ref"
 	 * @uml.associationEnd  
 	 */
-	private IBaseCompDefinition dc_ref;
+	private BaseCompDefinition dc_ref;
 	private String pp_ref;
 	/**
 	 * @uml.property  name="dependencyType"
@@ -38,7 +36,7 @@ public class GenericDependency implements IGenericDependency {
 	 * @return
 	 * @uml.property  name="dc_ref"
 	 */
-	public IBaseCompDefinition getDc_ref() {
+	public BaseCompDefinition getDc_ref() {
 		return dc_ref;
 	}
 
@@ -49,7 +47,7 @@ public class GenericDependency implements IGenericDependency {
 	 * @param dc_ref
 	 * @uml.property  name="dc_ref"
 	 */
-	public void setDc_ref(IBaseCompDefinition dc_ref) {
+	public void setDc_ref(BaseCompDefinition dc_ref) {
 		this.dc_ref = dc_ref;
 	}
 

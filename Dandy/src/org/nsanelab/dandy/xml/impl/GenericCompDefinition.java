@@ -6,7 +6,7 @@ import org.nsanelab.dandy.xml.iface.IGenericCompDefinition;
 /**
  * @author   vin
  */
-public class GenericCompDefinition extends BaseCompDefinition implements IGenericCompDefinition{
+public class GenericCompDefinition extends BaseCompDefinition {
 
 	public GenericCompDefinition(){
 		super();
@@ -38,7 +38,7 @@ public String toString() {
  * @return  Returns the dependencies.
  * @uml.property  name="dependencies"
  */
-public IDependencyAggregation getDependencies() {
+public DependencyAggregation getDependencies() {
 	return dependencies;
 }
 
@@ -52,7 +52,7 @@ public IDependencyAggregation getDependencies() {
  * @param dependencies  The dependencies to set.
  * @uml.property  name="dependencies"
  */
-public void setDependencies(IDependencyAggregation dependencies) {
+public void setDependencies(DependencyAggregation dependencies) {
 	if (dependencies != null) {
 		this.dependencies = dependencies;
 	}
@@ -69,7 +69,7 @@ public void setDependencies(IDependencyAggregation dependencies) {
  * @uml.associationEnd  inverse="genericCompDefinition:org.nsanelab.dandy.xml.iface.IDependencyAggregation"
  * @uml.association  name="dependencies"
  */
-private IDependencyAggregation dependencies;
+private DependencyAggregation dependencies;
 
 
 

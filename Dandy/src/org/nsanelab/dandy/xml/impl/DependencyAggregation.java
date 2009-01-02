@@ -7,11 +7,11 @@ import org.nsanelab.dandy.xml.iface.IGenericDependency;
 /**
  * @author   vin
  */
-public class DependencyAggregation implements IDependencyAggregation {
+public class DependencyAggregation {
 
 
 public DependencyAggregation(){
-	this.dependency = new IGenericDependency[0];
+	this.dependency = new GenericDependency[0];
 }
 
 
@@ -36,7 +36,7 @@ for(int i=0;i<this.dependency.length;i++){
  * @return
  * @uml.property  name="dependency"
  */
-public IGenericDependency[] getDependency() {
+public GenericDependency[] getDependency() {
 	return dependency;
 }
 
@@ -50,7 +50,7 @@ public IGenericDependency[] getDependency() {
  * @uml.property  name="dependency"
  * @uml.associationEnd  multiplicity="(0 -1)"
  */
-private IGenericDependency[] dependency;
+private GenericDependency[] dependency;
 
 
 /* (non-Javadoc)
@@ -60,7 +60,7 @@ private IGenericDependency[] dependency;
  * @param dependency
  * @uml.property  name="dependency"
  */
-public void setDependency(IGenericDependency[] dependency) {
+public void setDependency(GenericDependency[] dependency) {
 	this.dependency = dependency;
 }
 

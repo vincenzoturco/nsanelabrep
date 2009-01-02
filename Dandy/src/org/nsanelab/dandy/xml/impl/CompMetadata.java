@@ -1,33 +1,32 @@
 package org.nsanelab.dandy.xml.impl;
 
-import org.nsanelab.dandy.xml.iface.IBaseCompDefinition;
 import org.nsanelab.dandy.xml.iface.ICompMetadata;
-import org.nsanelab.dandy.xml.iface.ISharingDependency;
 
 
 public class CompMetadata implements ICompMetadata{
-
+	
+	private SharingDependency[] dependencies;
+	private BaseCompDefinition compDef;
+	
 	@Override
-	public IBaseCompDefinition getDcData() {
-		// TODO Auto-generated method stub
-		return null;
+	public BaseCompDefinition getDcData() {
+		return compDef;
 	}
 
 	@Override
-	public ISharingDependency[] getSharingDependencies() {
-		// TODO Auto-generated method stub
-		return null;
+	public SharingDependency[] getSharingDependencies() {
+		return dependencies;
 	}
 
 	@Override
-	public void setDcData(IBaseCompDefinition dcData) {
-		// TODO Auto-generated method stub
+	public void setDcData(BaseCompDefinition dcData) {
+		this.compDef = dcData;
 		
 	}
 
 	@Override
-	public void setSharingDependencies(ISharingDependency[] sharingDependency) {
-		// TODO Auto-generated method stub
+	public void setSharingDependencies(SharingDependency[] sharingDependency) {
+		this.dependencies = sharingDependency;
 		
 	}
 
