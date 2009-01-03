@@ -2,12 +2,16 @@ package org.nsanelab.prototypes;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.Stroke;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -21,7 +25,6 @@ import com.wutka.jox.JOXBeanInputStream;
 import com.wutka.jox.JOXBeanOutputStream;
 
 import edu.uci.ics.jung.algorithms.layout.CircleLayout;
-import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.graph.DirectedGraph;
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
@@ -155,7 +158,27 @@ public class TestJOX {
 
 		joxOut.close();
 	}
+	
+	private static void save(Component frame) {
+		Dimension size = new Dimension(1500,900);
+        int w = size.width;
+        int h = size.height;
+        int type = BufferedImage.TYPE_INT_RGB;
+        BufferedImage image = new BufferedImage(w, h, type);
+        Graphics2D g2 = image.createGraphics();
+        frame.paint(g2);
+        g2.dispose();
+        try {
+            String ext = "png";  // bmp, gif, png okay
+            File file = new File("textToImage." + ext);
+            javax.imageio.ImageIO.write(image, ext, file);
+        } catch(IOException e) {
+            System.out.println("write error: " + e.getMessage());
+        }
+    }
 
+
+	
 	private static void visualizzaGrafo(
 			Graph<BaseComponent, GenericDependency> inGraph) {
 		// Layout<V, E>, BasicVisualizationServer<V,E>
@@ -196,6 +219,7 @@ public class TestJOX {
 		frame.getContentPane().add(vv);
 		frame.pack();
 		frame.setVisible(true);
+		save(frame.getContentPane());
 	}
 
 	private static Collection<String> getDescriptors(String rootPath) {
