@@ -3,6 +3,7 @@ package org.nsanelab.dandy.domain.impl;
 import org.nsanelab.dandy.domain.iface.IDependencyInfo;
 import org.nsanelab.dandy.domain.iface.IGenericComp;
 import org.nsanelab.dandy.domain.iface.ISharingDependency;
+import org.nsanelab.dandy.domain.iface.IUDCDependency;
 
 public class SharingDependency implements ISharingDependency {
 
@@ -45,9 +46,20 @@ public class SharingDependency implements ISharingDependency {
 
 	@Override
 	public boolean equals(Object arg0) {
-		return arg0!=null && this.getClass().isInstance(arg0) && ((SharingDependency)arg0).getTgt().equals(this.getTgt())
-		&& ((SharingDependency)arg0).getSrc().equals(this.getSrc())
-		&& ((SharingDependency)arg0).getInfo().equals(this.getInfo());
+		return arg0!=null && this.getClass().isInstance(arg0) && ((ISharingDependency)arg0).getTgt().equals(this.getTgt())
+		&& ((ISharingDependency)arg0).getSrc().equals(this.getSrc())
+		&& ((ISharingDependency)arg0).getInfo().equals(this.getInfo());
 	}
+
+    @Override
+    public int hashCode() {
+        return src.hashCode()+39*tgt.hashCode()+97*info.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return this.info.getPublicPart();
+    }
+
 
 }

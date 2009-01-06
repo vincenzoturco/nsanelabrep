@@ -46,11 +46,27 @@ public class UDCDependency implements IUDCDependency {
 
 	@Override
 	public boolean equals(Object arg0) {
-		return arg0!=null && this.getClass().isInstance(arg0) && ((SharingDependency)arg0).getTgt().equals(this.getTgt())
-		&& ((SharingDependency)arg0).getSrc().equals(this.getSrc())
-		&& ((SharingDependency)arg0).getInfo().equals(this.getInfo());
+
+
+        
+		return arg0!=null && this.getClass().isInstance(arg0) &&
+                ((IUDCDependency)arg0).getTgt().equals(this.getTgt())
+		&& ((IUDCDependency)arg0).getSrc().equals(this.getSrc())
+		&& ((IUDCDependency)arg0).getInfo().equals(this.getInfo());
 
 	}
+
+    @Override
+    public int hashCode() {
+           return src.hashCode()+31*tgt.hashCode()+13*info.hashCode();
+    }
+
+    
+
+     @Override
+    public String toString() {
+        return this.info.getPublicPart();
+    }
 	
 
 }

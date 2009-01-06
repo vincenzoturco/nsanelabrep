@@ -10,5 +10,5 @@ package org.nsanelab.dandy.graph.iface;
  */
 public interface IGraphFactoryBuilder {
 
-    public IGraphFactory factoryInstance() throws ClassNotFoundException, IllegalAccessException, InstantiationException;
+    public IGraphFactory factoryInstance() ;
 }

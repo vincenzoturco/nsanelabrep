@@ -14,13 +14,16 @@ import org.nsanelab.dandy.graph.iface.IGraphFactoryBuilder;
 public class GraphFactoryBuilder implements IGraphFactoryBuilder {
 
     private static IGraphFactory factoryInstance = null;
-    private static final String factoryImplPath = "org.nsanelab.dandy.graph.impl.GraphFactory";
+    private static final String factoryImplPath = "org.nsanelab.dandy.graph.impl.GraphFactoryImpl";
 
-    public IGraphFactory factoryInstance() throws ClassNotFoundException,
-            IllegalAccessException, InstantiationException {
+    public IGraphFactory factoryInstance()  {
         if (factoryInstance == null) {
+            try{
             Class factClass = Class.forName(factoryImplPath);
             factoryInstance = (IGraphFactory) factClass.newInstance();
+            }catch(Exception ex){
+                ex.printStackTrace();
+            }
         }
         return factoryInstance;
     }
