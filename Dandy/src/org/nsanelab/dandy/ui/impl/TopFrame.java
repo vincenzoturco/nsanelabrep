@@ -12,10 +12,11 @@ package org.nsanelab.dandy.ui.impl;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import javax.swing.plaf.metal.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import org.nsanelab.dandy.usecase.impl.ExportImage;
 import org.nsanelab.dandy.usecase.impl.NW70Graph;
-
 
 /**
  *
@@ -56,6 +57,7 @@ public class TopFrame extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         fileClose = new javax.swing.JMenuItem();
         topEdit = new javax.swing.JMenu();
+        editRefresh = new javax.swing.JMenuItem();
         topHelp = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -88,15 +90,34 @@ public class TopFrame extends javax.swing.JFrame {
         topFile.add(jSeparator2);
 
         fileExport.setText("Export...");
+        fileExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fileExportActionPerformed(evt);
+            }
+        });
         topFile.add(fileExport);
         topFile.add(jSeparator3);
 
         fileClose.setText("Close");
+        fileClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fileCloseActionPerformed(evt);
+            }
+        });
         topFile.add(fileClose);
 
         jMenuBar1.add(topFile);
 
         topEdit.setText("Edit");
+
+        editRefresh.setText("Refresh");
+        editRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editRefreshActionPerformed(evt);
+            }
+        });
+        topEdit.add(editRefresh);
+
         jMenuBar1.add(topEdit);
 
         topHelp.setText("Help");
@@ -117,6 +138,7 @@ public class TopFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
     private void genericUIInit() {
         this.setTitle("Dependency graph generator");
         Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -131,12 +153,29 @@ public class TopFrame extends javax.swing.JFrame {
 
     private void fileNew70GraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileNew70GraphActionPerformed
         // TODO add your handling code here:
-       // tabs.addTab("cazzone", new JPanel());
-        
-	new NW70Graph(this).doUseCase();
-		//return retVal;
-      
+        // tabs.addTab("cazzone", new JPanel());
+
+        new NW70Graph(this).doUseCase();
+    //return retVal;
+
     }//GEN-LAST:event_fileNew70GraphActionPerformed
+
+    private void editRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editRefreshActionPerformed
+        // TODO add your handling code here:
+        this.getTabs().getSelectedComponent().repaint();
+    }//GEN-LAST:event_editRefreshActionPerformed
+
+    private void fileCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileCloseActionPerformed
+        // TODO add your handling code here:
+        Component toRemove = this.getTabs().getSelectedComponent();
+        this.getTabs().remove(toRemove);
+
+    }//GEN-LAST:event_fileCloseActionPerformed
+
+    private void fileExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileExportActionPerformed
+        // TODO add your handling code here:
+        new ExportImage(this).doUseCase();
+    }//GEN-LAST:event_fileExportActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,6 +199,7 @@ public class TopFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem editRefresh;
     private javax.swing.JMenuItem fileClose;
     private javax.swing.JMenuItem fileExport;
     private javax.swing.JMenu fileNew;
