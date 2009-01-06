@@ -24,8 +24,10 @@ public class GraphFactoryImpl implements IGraphFactory {
         IGenericComp tmpComp = null;
 
         graph = new DirectedSparseGraph<IGenericComp, IBaseDependency>();
-        for (iter = coll.iterator(); iter.hasNext(); tmpComp = iter.next()) {
-            if (!graph.containsVertex(tmpComp)) {
+        iter = coll.iterator();
+        while( iter.hasNext() ) {
+            tmpComp = iter.next();
+            if (!tmpComp.isStandard() && !graph.containsVertex(tmpComp)) {
                 graph.addVertex(tmpComp);
                 addDependenciesToGraph(tmpComp, graph);
             }
@@ -44,7 +46,7 @@ public class GraphFactoryImpl implements IGraphFactory {
         depColl = comp.getOutDep();
 
         for (depIter = depColl.iterator(); depIter.hasNext(); dep = depIter.next()) {
-            if (!graph.containsEdge(dep)) {
+            if (dep!=null && !dep.getTgt().isStandard() && !dep.getSrc().isStandard() && !graph.containsEdge(dep) ) {
                 graph.addEdge(dep, comp, dep.getTgt());
             }
         }

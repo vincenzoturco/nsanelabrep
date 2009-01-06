@@ -15,7 +15,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.plaf.metal.*;
 import org.nsanelab.dandy.usecase.impl.NW70Graph;
-import org.nsanelab.dandy.utils.PathFinder;
+
 
 /**
  *
@@ -28,6 +28,10 @@ public class TopFrame extends javax.swing.JFrame {
         initComponents();
         genericUIInit();
 
+    }
+
+    public JTabbedPane getTabs() {
+        return tabs;
     }
 
     /** This method is called from within the constructor to

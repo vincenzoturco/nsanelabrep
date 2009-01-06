@@ -36,4 +36,12 @@ public class DependencyInfo implements IDependencyInfo {
 
 	}
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + (this.depTime != null ? this.depTime.hashCode() : 0);
+        hash = 47 * hash + (this.pp != null ? this.pp.hashCode() : 0);
+        return hash;
+    }
+
 }

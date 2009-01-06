@@ -11,6 +11,10 @@ public class GenericComp implements IGenericComp {
 	private String name;
 	private String vendor;
 
+    public boolean isStandard() {
+      	return this.vendor.equals("sap.com");
+    }
+
 	@Override
 	public Collection<IBaseDependency> getInDep() {
 		return this.inDep;
@@ -61,5 +65,20 @@ public class GenericComp implements IGenericComp {
 				&& ((GenericComp) obj).getVendor().equals(this.getVendor());
 
 	}
+
+    @Override
+    public int hashCode() {
+       return this.name.hashCode()+31*this.vendor.hashCode();
+    }
+
+
+
+    public String toString() {
+	String retVal;
+	retVal = this.vendor+"/"+this.name;
+	retVal = "..."+retVal.substring(retVal.lastIndexOf('/'));
+
+	return retVal;
+}
 
 }

@@ -29,8 +29,8 @@ public class GenericCompFactory implements IGenericCompFactory {
 		try {
 			newComp = (IGenericComp) Class.forName(genericCompImpl)
 					.newInstance();
-			allDeps = xmlDep2DomainDep(compMetadata.getDcData());
-			allDeps.addAll(xmlSharedDep2DomainSharedDep(compMetadata.getSharingDependencies()));
+			allDeps = xmlDep2DomainDep(compMetadata.getDcData(), newComp);
+			allDeps.addAll(xmlSharedDep2DomainSharedDep(compMetadata.getSharingDependencies(),newComp));
 			newComp.setOutDep(allDeps);
 			newComp.setName(compMetadata.getDcData().getName());
 			newComp.setVendor(compMetadata.getDcData().getVendor());
@@ -53,7 +53,7 @@ public class GenericCompFactory implements IGenericCompFactory {
 	}
 
 	private ArrayList<IBaseDependency> xmlDep2DomainDep(
-			GenericCompDefinition compDef) throws ClassNotFoundException, Exception{
+			GenericCompDefinition compDef, IGenericComp owner) throws ClassNotFoundException, Exception{
 		//var decl
 		ArrayList<IBaseDependency> arrayOut;
 		GenericDependency[] xmlDeps;
@@ -79,15 +79,15 @@ public class GenericCompFactory implements IGenericCompFactory {
 			genericComp = (IGenericComp) baseCompClass.newInstance();
 			
 			tmpComp = xmlDeps[i].getDc_ref();
-			genericComp.setName(tmpComp.getName());
+			genericComp.setName(tmpComp.getName().replaceAll("~", "/"));
 			genericComp.setVendor(tmpComp.getVendor());
 			
 			depInfo.setDepTime(EDependencyTime.build);
-			depInfo.setPublicPart(xmlDeps[i].getPp_ref());
+			depInfo.setPublicPart(xmlDeps[i].getPp_ref()!=null?xmlDeps[i].getPp_ref():"N/A");
 			
 			genDep.setInfo(depInfo);
 			genDep.setTgt(genericComp);
-			genDep.setSrc(null);
+			genDep.setSrc(owner);
 						
 			arrayOut.add(genDep);
 		}
@@ -95,7 +95,7 @@ public class GenericCompFactory implements IGenericCompFactory {
 	}
 
 	private ArrayList<IBaseDependency> xmlSharedDep2DomainSharedDep(
-			org.nsanelab.dandy.xml.impl.SharingDependency[] sharDep) throws ClassNotFoundException, Exception {
+			org.nsanelab.dandy.xml.impl.SharingDependency[] sharDep, IGenericComp owner) throws ClassNotFoundException, Exception {
 		//var decl
 		ArrayList<IBaseDependency> arrayOut;
 			
@@ -120,15 +120,15 @@ public class GenericCompFactory implements IGenericCompFactory {
 			
 			tmpComp = sharDep[i].getIBaseCompDefinition();
 			
-			genericComp.setName(tmpComp.getName());
+			genericComp.setName(tmpComp.getName().replaceAll("~", "/"));
 			genericComp.setVendor(tmpComp.getVendor());
 			
 			depInfo.setDepTime(EDependencyTime.run);
-			depInfo.setPublicPart(null);
+			depInfo.setPublicPart("N/A");
 			
 			genDep.setInfo(depInfo);
 			genDep.setTgt(genericComp);
-			genDep.setSrc(null);
+			genDep.setSrc(owner);
 			
 			arrayOut.add(genDep);
 		}

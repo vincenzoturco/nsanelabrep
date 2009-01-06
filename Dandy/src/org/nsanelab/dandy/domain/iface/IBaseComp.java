@@ -29,4 +29,6 @@ public interface IBaseComp {
 	 */
 	public void setVendor(String vendor);
 
+    public boolean isStandard();
+
 }
