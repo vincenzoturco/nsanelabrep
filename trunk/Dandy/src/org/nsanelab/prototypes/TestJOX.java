@@ -88,6 +88,7 @@ public class TestJOX {
 			
 			// System.out.println(g.toString());
 			visualizzaGrafo(g);
+          
 
 		} catch (Exception exc) {
 			exc.printStackTrace();
