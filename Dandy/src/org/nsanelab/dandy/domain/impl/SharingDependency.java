@@ -58,7 +58,7 @@ public class SharingDependency implements ISharingDependency {
 
     @Override
     public String toString() {
-        return this.info.getPublicPart();
+        return "";
     }
 
 
