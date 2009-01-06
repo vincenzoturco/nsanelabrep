@@ -13,7 +13,6 @@ Copy the executable jar on your local machine. Type on your shell
 {{{
 #<path_to_your_jre6>/bin/java -jar <path_to_executable_jar>
 }}}
-For the time being, after graph generation you need to restart the application to perform a new operation.
 
 == Usage ==
  * Select File->New->NW70 dependency.
