@@ -15,7 +15,7 @@ Copy the executable jar on your local machine. Type on your shell
 }}}
 
 == Usage ==
- * Select File->New->NW70 dependency.
+ * Select File->New->NW70 dependency graph.
  * A file chooser pops up: select a root directory. The DC definitions (".dcdef" files) will be recursively searched in the corresponding subtree.
  * Graphics will be generated for the DCs found.
  * You can now export the generated graph as image from File->Export
