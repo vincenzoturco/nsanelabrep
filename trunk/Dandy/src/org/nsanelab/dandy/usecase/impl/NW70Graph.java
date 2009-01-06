@@ -29,6 +29,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Paint;
 import java.awt.Stroke;
+import java.io.File;
 import javax.swing.JComponent;
 import org.apache.commons.collections15.Transformer;
 import org.nsanelab.dandy.domain.EDependencyTime;
@@ -75,6 +76,8 @@ public class NW70Graph {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             retVal = chooser.getSelectedFile().getAbsolutePath();
 
+        } else{
+            return;
         }
 
         descPaths = PathFinder.getDescriptors(retVal);
@@ -93,7 +96,7 @@ public class NW70Graph {
 
         JComponent outcomp = visualizzaGrafo(graph);
         outcomp.setBackground(Color.WHITE);
-        this.mainFrame.getTabs().addTab("new dep ", outcomp);
+        this.mainFrame.getTabs().addTab(retVal.substring(retVal.lastIndexOf(File.separator)+1), outcomp);
         this.mainFrame.getTabs().setSelectedComponent(outcomp);
 
     }
@@ -103,10 +106,12 @@ public class NW70Graph {
         // Layout<V, E>, BasicVisualizationServer<V,E>
         Layout<IGenericComp, IBaseDependency> layout = new CircleLayout<IGenericComp, IBaseDependency>(
                 inGraph);
-        layout.setSize(mainFrame.getTabs().getSize());
+        Dimension graphDim = mainFrame.getTabs().getSize();
+        graphDim.height -= 50;
+        layout.setSize(graphDim);
         BasicVisualizationServer<IGenericComp, IBaseDependency> vv = new BasicVisualizationServer<IGenericComp, IBaseDependency>(
                 layout);
-        	vv.setPreferredSize(mainFrame.getTabs().getSize());
+        	vv.setPreferredSize(graphDim);
         // Setup up a new vertex to paint transformer...
         Transformer<IGenericComp, Paint> vertexPaint = new Transformer<IGenericComp, Paint>() {
 
