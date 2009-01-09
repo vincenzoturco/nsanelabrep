@@ -17,7 +17,7 @@ Copy the executable jar on your local machine. Type on your shell
 == Usage ==
  * Select File->New->NW70 dependency graph.
  * A file chooser pops up: select a root directory. The DC definitions (".dcdef" files) will be recursively searched in the corresponding subtree.
- * Graphics will be generated for the DCs found. DCs are represented as vertices, dependencies as edges. Dependencies derived from the *.dcdef* file are represented as plain edges, labelled with the corresponding public part name. Dependencies derived from the *.wdProperties* file are represented as dotted edges, with no label.
+ * Graphics will be generated for the DCs found. DCs are represented as vertices, dependencies as edges. Dependencies derived from the .dcdef file are represented as plain edges, labelled with the corresponding public part name. Dependencies derived from the .wdProperties file are represented as dotted edges, with no label.
  * You can now export the generated graph as image from File->Export
 
 = Used Libraries =
