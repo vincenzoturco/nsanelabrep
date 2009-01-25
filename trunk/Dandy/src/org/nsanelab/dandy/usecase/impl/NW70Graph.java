@@ -105,6 +105,7 @@ public class NW70Graph implements IUIGraph {
 				retVal.substring(retVal.lastIndexOf(File.separator) + 1),
 				outComp);
 		this.mainFrame.getTabs().setSelectedComponent(outComp);
+        this.mainFrame.setAllIcons();
 
 	}
 
