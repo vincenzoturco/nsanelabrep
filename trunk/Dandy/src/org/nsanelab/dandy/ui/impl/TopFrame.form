@@ -11,11 +11,17 @@
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="fileNew">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/org/nsanelab/dandy/ui/impl/icons/32px-Crystal_Clear_action_filenew.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="New..."/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="fileNew70Graph">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/org/nsanelab/dandy/ui/impl/icons/sap.jpg"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="NW70 DC dependency graph"/>
                   </Properties>
                   <Events>
@@ -29,11 +35,17 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="newSave">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/org/nsanelab/dandy/ui/impl/icons/32px-Crystal_Clear_device_floppy_unmount.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Save"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="fileSaveAs">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/org/nsanelab/dandy/ui/impl/icons/32px-Crystal_Clear_app_kfloppy.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Save As..."/>
               </Properties>
             </MenuItem>
@@ -41,6 +53,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="fileExport">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/org/nsanelab/dandy/ui/impl/icons/32px-Crystal_Clear_app_kpaint.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Export..."/>
               </Properties>
               <Events>
@@ -49,13 +64,18 @@
             </MenuItem>
             <MenuItem class="javax.swing.JSeparator" name="jSeparator3">
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="fileClose">
+            <MenuItem class="javax.swing.JMenuItem" name="fileCloseAll">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Close"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fileCloseActionPerformed"/>
-              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="fileClose">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/org/nsanelab/dandy/ui/impl/icons/32px-Crystal_Clear_action_exit.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Close All"/>
+              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -66,6 +86,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="editRefresh">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/org/nsanelab/dandy/ui/impl/icons/32px-Crystal_Clear_action_reload.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Refresh"/>
               </Properties>
               <Events>
@@ -78,6 +101,24 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Help"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="helpManual">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/org/nsanelab/dandy/ui/impl/icons/32px-Crystal_Clear_app_khelpcenter.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="User Guide"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="helpAbout">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/org/nsanelab/dandy/ui/impl/icons/32px-Crystal_Clear_action_bookmark.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="About"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>

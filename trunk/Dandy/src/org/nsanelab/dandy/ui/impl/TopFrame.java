@@ -10,6 +10,7 @@
  */
 package org.nsanelab.dandy.ui.impl;
 
+import java.awt.event.ActionEvent;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -50,104 +51,120 @@ public class TopFrame extends javax.swing.JFrame {
 	 */
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed"
-	// desc="Generated Code">//GEN-BEGIN:initComponents
-	private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-		tabs = new javax.swing.JTabbedPane();
-		jMenuBar1 = new javax.swing.JMenuBar();
-		topFile = new javax.swing.JMenu();
-		fileNew = new javax.swing.JMenu();
-		fileNew70Graph = new javax.swing.JMenuItem();
-		jSeparator1 = new javax.swing.JSeparator();
-		newSave = new javax.swing.JMenuItem();
-		fileSaveAs = new javax.swing.JMenuItem();
-		jSeparator2 = new javax.swing.JSeparator();
-		fileExport = new javax.swing.JMenuItem();
-		jSeparator3 = new javax.swing.JSeparator();
-		fileClose = new javax.swing.JMenuItem();
-		topEdit = new javax.swing.JMenu();
-		editRefresh = new javax.swing.JMenuItem();
-		topHelp = new javax.swing.JMenu();
+        tabs = new javax.swing.JTabbedPane();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        topFile = new javax.swing.JMenu();
+        fileNew = new javax.swing.JMenu();
+        fileNew70Graph = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JSeparator();
+        newSave = new javax.swing.JMenuItem();
+        fileSaveAs = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JSeparator();
+        fileExport = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JSeparator();
+        fileCloseAll = new javax.swing.JMenuItem();
+        fileClose = new javax.swing.JMenuItem();
+        topEdit = new javax.swing.JMenu();
+        editRefresh = new javax.swing.JMenuItem();
+        topHelp = new javax.swing.JMenu();
+        helpManual = new javax.swing.JMenuItem();
+        helpAbout = new javax.swing.JMenuItem();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-		topFile.setText("File");
+        topFile.setText("File");
 
-		fileNew.setText("New...");
+        fileNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/nsanelab/dandy/ui/impl/icons/32px-Crystal_Clear_action_filenew.png"))); // NOI18N
+        fileNew.setText("New...");
 
-		fileNew70Graph.setText("NW70 DC dependency graph");
-		fileNew70Graph.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				fileNew70GraphMouseClicked(evt);
-			}
-		});
-		fileNew70Graph.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				fileNew70GraphActionPerformed(evt);
-			}
-		});
-		fileNew.add(fileNew70Graph);
+        fileNew70Graph.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/nsanelab/dandy/ui/impl/icons/sap.jpg"))); // NOI18N
+        fileNew70Graph.setText("NW70 DC dependency graph");
+        fileNew70Graph.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fileNew70GraphMouseClicked(evt);
+            }
+        });
+        fileNew70Graph.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fileNew70GraphActionPerformed(evt);
+            }
+        });
+        fileNew.add(fileNew70Graph);
 
-		topFile.add(fileNew);
-		topFile.add(jSeparator1);
+        topFile.add(fileNew);
+        topFile.add(jSeparator1);
 
-		newSave.setText("Save");
-		topFile.add(newSave);
+        newSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/nsanelab/dandy/ui/impl/icons/32px-Crystal_Clear_device_floppy_unmount.png"))); // NOI18N
+        newSave.setText("Save");
+        topFile.add(newSave);
 
-		fileSaveAs.setText("Save As...");
-		topFile.add(fileSaveAs);
-		topFile.add(jSeparator2);
+        fileSaveAs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/nsanelab/dandy/ui/impl/icons/32px-Crystal_Clear_app_kfloppy.png"))); // NOI18N
+        fileSaveAs.setText("Save As...");
+        topFile.add(fileSaveAs);
+        topFile.add(jSeparator2);
 
-		fileExport.setText("Export...");
-		fileExport.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				fileExportActionPerformed(evt);
-			}
-		});
-		topFile.add(fileExport);
-		topFile.add(jSeparator3);
+        fileExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/nsanelab/dandy/ui/impl/icons/32px-Crystal_Clear_app_kpaint.png"))); // NOI18N
+        fileExport.setText("Export...");
+        fileExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fileExportActionPerformed(evt);
+            }
+        });
+        topFile.add(fileExport);
+        topFile.add(jSeparator3);
 
-		fileClose.setText("Close");
-		fileClose.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				fileCloseActionPerformed(evt);
-			}
-		});
-		topFile.add(fileClose);
+        fileCloseAll.setText("Close");
+        topFile.add(fileCloseAll);
 
-		jMenuBar1.add(topFile);
+        fileClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/nsanelab/dandy/ui/impl/icons/32px-Crystal_Clear_action_exit.png"))); // NOI18N
+        fileClose.setText("Close All");
+        topFile.add(fileClose);
 
-		topEdit.setText("Edit");
+        jMenuBar1.add(topFile);
 
-		editRefresh.setText("Refresh");
-		editRefresh.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				editRefreshActionPerformed(evt);
-			}
-		});
-		topEdit.add(editRefresh);
+        topEdit.setText("Edit");
 
-		jMenuBar1.add(topEdit);
+        editRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/nsanelab/dandy/ui/impl/icons/32px-Crystal_Clear_action_reload.png"))); // NOI18N
+        editRefresh.setText("Refresh");
+        editRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editRefreshActionPerformed(evt);
+            }
+        });
+        topEdit.add(editRefresh);
 
-		topHelp.setText("Help");
-		jMenuBar1.add(topHelp);
+        jMenuBar1.add(topEdit);
 
-		setJMenuBar(jMenuBar1);
+        topHelp.setText("Help");
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
-				getContentPane());
-		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(
-				javax.swing.GroupLayout.Alignment.LEADING).addComponent(tabs,
-				javax.swing.GroupLayout.Alignment.TRAILING,
-				javax.swing.GroupLayout.DEFAULT_SIZE, 911, Short.MAX_VALUE));
-		layout.setVerticalGroup(layout.createParallelGroup(
-				javax.swing.GroupLayout.Alignment.LEADING).addComponent(tabs,
-				javax.swing.GroupLayout.Alignment.TRAILING,
-				javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE));
+        helpManual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/nsanelab/dandy/ui/impl/icons/32px-Crystal_Clear_app_khelpcenter.png"))); // NOI18N
+        helpManual.setText("User Guide");
+        topHelp.add(helpManual);
 
-		pack();
-	}// </editor-fold>//GEN-END:initComponents
+        helpAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/nsanelab/dandy/ui/impl/icons/32px-Crystal_Clear_action_bookmark.png"))); // NOI18N
+        helpAbout.setText("About");
+        topHelp.add(helpAbout);
+
+        jMenuBar1.add(topHelp);
+
+        setJMenuBar(jMenuBar1);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tabs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 911, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tabs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
 
 	private void genericUIInit() {
 		this.setTitle("Dependency graph generator");
@@ -233,23 +250,26 @@ public class TopFrame extends javax.swing.JFrame {
 		});
 	}
 
-	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JMenuItem editRefresh;
-	private javax.swing.JMenuItem fileClose;
-	private javax.swing.JMenuItem fileExport;
-	private javax.swing.JMenu fileNew;
-	private javax.swing.JMenuItem fileNew70Graph;
-	private javax.swing.JMenuItem fileSaveAs;
-	private javax.swing.JMenuBar jMenuBar1;
-	private javax.swing.JSeparator jSeparator1;
-	private javax.swing.JSeparator jSeparator2;
-	private javax.swing.JSeparator jSeparator3;
-	private javax.swing.JMenuItem newSave;
-	private javax.swing.JTabbedPane tabs;
-	private javax.swing.JMenu topEdit;
-	private javax.swing.JMenu topFile;
-	private javax.swing.JMenu topHelp;
-	// End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem editRefresh;
+    private javax.swing.JMenuItem fileClose;
+    private javax.swing.JMenuItem fileCloseAll;
+    private javax.swing.JMenuItem fileExport;
+    private javax.swing.JMenu fileNew;
+    private javax.swing.JMenuItem fileNew70Graph;
+    private javax.swing.JMenuItem fileSaveAs;
+    private javax.swing.JMenuItem helpAbout;
+    private javax.swing.JMenuItem helpManual;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JMenuItem newSave;
+    private javax.swing.JTabbedPane tabs;
+    private javax.swing.JMenu topEdit;
+    private javax.swing.JMenu topFile;
+    private javax.swing.JMenu topHelp;
+    // End of variables declaration//GEN-END:variables
 	/**
 	 * @uml.property name="graphs"
 	 */
