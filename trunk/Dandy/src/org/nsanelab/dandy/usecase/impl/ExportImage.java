@@ -35,6 +35,10 @@ public class ExportImage {
         String filePath;
         FileFilter filter;
         int returnVal;
+        
+        if(this.frame.getTabs().getComponentCount() == 0){
+        	return;
+        }
 
         filter = new ExtensionFileFilter("Image files", new String[]{"JPG", "JPEG", "GIF", "PNG"});
         chooser = new JFileChooser();

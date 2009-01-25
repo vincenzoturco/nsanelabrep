@@ -2,6 +2,8 @@ package org.nsanelab.dandy.domain.iface;
 
 import java.util.Collection;
 
+import org.nsanelab.dandy.usecase.iface.IUIGraph;
+
 
 public interface IGenericComp extends IBaseComp {
 
@@ -30,5 +32,7 @@ public interface IGenericComp extends IBaseComp {
 	 * @uml.property  name="inDep"
 	 */
 	public void setInDep(Collection<IBaseDependency> inDep);
+
+
 
 }
