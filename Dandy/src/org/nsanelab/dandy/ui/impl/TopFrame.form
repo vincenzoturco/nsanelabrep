@@ -20,7 +20,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="fileNew70Graph">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/org/nsanelab/dandy/ui/impl/icons/sap.jpg"/>
+                      <Image iconType="3" name="/org/nsanelab/dandy/ui/impl/icons/sap.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="NW70 DC dependency graph"/>
                   </Properties>

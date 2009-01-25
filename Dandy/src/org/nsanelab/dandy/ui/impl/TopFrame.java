@@ -80,7 +80,7 @@ public class TopFrame extends javax.swing.JFrame {
         fileNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/nsanelab/dandy/ui/impl/icons/32px-Crystal_Clear_action_filenew.png"))); // NOI18N
         fileNew.setText("New...");
 
-        fileNew70Graph.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/nsanelab/dandy/ui/impl/icons/sap.jpg"))); // NOI18N
+        fileNew70Graph.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/nsanelab/dandy/ui/impl/icons/sap.png"))); // NOI18N
         fileNew70Graph.setText("NW70 DC dependency graph");
         fileNew70Graph.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -193,7 +193,21 @@ public class TopFrame extends javax.swing.JFrame {
 		this.tabs.remove(idx);
 		this.tabs.add(renderedGraph, idx);
 		this.tabs.setTitleAt(idx, title);
+        this.setAllIcons();
+        
 	}
+
+    public void setAllIcons(){
+        int tabSetSize;
+        Icon tabIcon;
+
+        tabSetSize = this.tabs.getTabCount();
+        tabIcon = new ImageIcon("src/org/nsanelab/dandy/ui/impl/icons/sap_small.png");
+        for(int idx =0;idx<tabSetSize;idx++){
+            this.tabs.setIconAt(idx, tabIcon);
+        }
+        
+    }
 
 	private void fileNew70GraphMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_fileNew70GraphMouseClicked
 		// TODO add your handling code here:
