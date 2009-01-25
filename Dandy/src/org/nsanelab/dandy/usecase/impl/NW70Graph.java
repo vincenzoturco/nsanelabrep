@@ -8,12 +8,14 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import javax.swing.JFileChooser;
+import javax.swing.JTabbedPane;
+
 import org.nsanelab.dandy.domain.iface.IGenericComp;
 import org.nsanelab.dandy.domain.iface.IGenericCompFactory;
 import org.nsanelab.dandy.domain.iface.IGenericCompFactoryBuilder;
 import org.nsanelab.dandy.domain.impl.GenericCompFactoryBuilder;
+import org.nsanelab.dandy.usecase.iface.IUIGraph;
 import org.nsanelab.dandy.utils.PathFinder;
-import org.nsanelab.dandy.xml.iface.ICompMetadata;
 import org.nsanelab.dandy.xml.iface.ICompMetadataFactory;
 import org.nsanelab.dandy.xml.iface.ICompMetadataFactoryBuilder;
 import org.nsanelab.dandy.xml.impl.CompMetadataFactoryBuilder;
@@ -40,116 +42,239 @@ import org.nsanelab.dandy.graph.impl.GraphFactoryBuilder;
 import org.nsanelab.dandy.ui.impl.TopFrame;
 
 /**
- *
  * @author vin
+ * @uml.dependency 
+ *                 supplier="org.nsanelab.dandy.graph.iface.IGraphFactoryBuilder"
+ * @uml.dependency supplier="org.nsanelab.dandy.graph.iface.IGraphFactory"
  */
-public class NW70Graph {
+public class NW70Graph implements IUIGraph {
 
-    private TopFrame mainFrame;
+	public NW70Graph(TopFrame frame) {
+		this.mainFrame = frame;
+	}
 
-    public NW70Graph(TopFrame frame) {
-        this.mainFrame = frame;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.nsanelab.dandy.usecase.impl.UIGraph#doGraph()
+	 */
+	public void doGraph() {
+		ICompMetadataFactoryBuilder xmlbuilder = new CompMetadataFactoryBuilder();
+		ICompMetadataFactory xmlfactory = xmlbuilder.factoryInstance();
+		IGenericCompFactoryBuilder domBuilder = new GenericCompFactoryBuilder();
+		IGenericCompFactory domFactory = domBuilder.factoryInstance();
+		IGraphFactoryBuilder graphBuilder = new GraphFactoryBuilder();
+		IGraphFactory graphFactory = graphBuilder.factoryInstance();
 
-    public void doUseCase() {
-        ICompMetadataFactoryBuilder xmlbuilder = new CompMetadataFactoryBuilder();
-        ICompMetadataFactory xmlfactory = xmlbuilder.factoryInstance();
-        IGenericCompFactoryBuilder domBuilder = new GenericCompFactoryBuilder();
-        IGenericCompFactory domFactory = domBuilder.factoryInstance();
-        IGraphFactoryBuilder graphBuilder = new GraphFactoryBuilder();
-        IGraphFactory graphFactory = graphBuilder.factoryInstance();
+		JFileChooser chooser = new JFileChooser();
+		Collection<String> descPaths;
+		Iterator<String> descPathStr;
 
-        JFileChooser chooser = new JFileChooser();
-        Collection<String> descPaths;
-        Iterator<String> descPathStr;
-        Collection<ICompMetadata> xmlCompColl;
-        Collection<IGenericComp> domCompColl;
+		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		String retVal = "";
+		// chooser.addChoosableFileFilter (new FileNameExtensionFilter
+		// ("File XML", "xml"));
 
-        DirectedGraph<IGenericComp, IBaseDependency> graph;
+		int returnVal = chooser.showOpenDialog(mainFrame);
 
-        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        String retVal = "";
-        //chooser.addChoosableFileFilter (new FileNameExtensionFilter ("File XML", "xml"));
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			retVal = chooser.getSelectedFile().getAbsolutePath();
 
-        int returnVal = chooser.showOpenDialog(mainFrame);
+		} else {
+			return;
+		}
 
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            retVal = chooser.getSelectedFile().getAbsolutePath();
+		descPaths = PathFinder.getDescriptors(retVal);
+		// xmlCompColl = new LinkedList<ICompMetadata>();
+		domCompColl = new LinkedList<IGenericComp>();
 
-        } else{
-            return;
-        }
+		for (descPathStr = descPaths.iterator(); descPathStr.hasNext();) {
+			try {
+				domCompColl.add(domFactory.create(xmlfactory.create(descPathStr
+						.next())));
+			} catch (Exception f) {
+				f.printStackTrace();
+			}
+		}
 
-        descPaths = PathFinder.getDescriptors(retVal);
-        //   xmlCompColl = new LinkedList<ICompMetadata>();
-        domCompColl = new LinkedList<IGenericComp>();
+		graph = graphFactory.create(domCompColl);
 
-        for (descPathStr = descPaths.iterator(); descPathStr.hasNext();) {
-            try {
-                domCompColl.add(domFactory.create(xmlfactory.create(descPathStr.next())));
-            } catch (Exception f) {
-                f.printStackTrace();
-            }
-        }
+		outComp = showGraph(graph);
+		outComp.setBackground(Color.WHITE);
+		this.mainFrame.getTabs().addTab(
+				retVal.substring(retVal.lastIndexOf(File.separator) + 1),
+				outComp);
+		this.mainFrame.getTabs().setSelectedComponent(outComp);
 
-        graph = graphFactory.create(domCompColl);
+	}
 
-        JComponent outcomp = visualizzaGrafo(graph);
-        outcomp.setBackground(Color.WHITE);
-        this.mainFrame.getTabs().addTab(retVal.substring(retVal.lastIndexOf(File.separator)+1), outcomp);
-        this.mainFrame.getTabs().setSelectedComponent(outcomp);
+	private JComponent showGraph(Graph<IGenericComp, IBaseDependency> inGraph) {
+		// Layout<V, E>, BasicVisualizationServer<V,E>
+		Layout<IGenericComp, IBaseDependency> layout = new CircleLayout<IGenericComp, IBaseDependency>(
+				inGraph);
+		Dimension graphDim = mainFrame.getTabs().getSize();
+		graphDim.height -= 50;
+		layout.setSize(graphDim);
+		BasicVisualizationServer<IGenericComp, IBaseDependency> vv = new BasicVisualizationServer<IGenericComp, IBaseDependency>(
+				layout);
+		vv.setPreferredSize(graphDim);
+		// Setup up a new vertex to paint transformer...
+		Transformer<IGenericComp, Paint> vertexPaint = new Transformer<IGenericComp, Paint>() {
 
-    }
+			public Paint transform(IGenericComp i) {
+				Color retVal;
+				if (i.isStandard()) {
+					retVal = Color.GRAY;
+				} else {
+					retVal = Color.WHITE;
+				}
+				return retVal;
+			}
+		};
+		// Set up a new stroke Transformer for the edges
+		float buildDash[] = { 0.5f };
+		float runDash[] = { 3.5f };
+		final Stroke buildStroke = new BasicStroke(0.5f,
+				BasicStroke.CAP_SQUARE, BasicStroke.JOIN_ROUND, 10.0f,
+				buildDash, 0.0f);
+		final Stroke runStroke = new BasicStroke(0.5f, BasicStroke.CAP_SQUARE,
+				BasicStroke.JOIN_ROUND, 10.0f, runDash, 0.0f);
+		Transformer<IBaseDependency, Stroke> edgeStrokeTransformer = new Transformer<IBaseDependency, Stroke>() {
 
-    private JComponent visualizzaGrafo(
-            Graph<IGenericComp, IBaseDependency> inGraph) {
-        // Layout<V, E>, BasicVisualizationServer<V,E>
-        Layout<IGenericComp, IBaseDependency> layout = new CircleLayout<IGenericComp, IBaseDependency>(
-                inGraph);
-        Dimension graphDim = mainFrame.getTabs().getSize();
-        graphDim.height -= 50;
-        layout.setSize(graphDim);
-        BasicVisualizationServer<IGenericComp, IBaseDependency> vv = new BasicVisualizationServer<IGenericComp, IBaseDependency>(
-                layout);
-        	vv.setPreferredSize(graphDim);
-        // Setup up a new vertex to paint transformer...
-        Transformer<IGenericComp, Paint> vertexPaint = new Transformer<IGenericComp, Paint>() {
+			public Stroke transform(IBaseDependency s) {
+				if (s.getInfo().getDepTime().equals(EDependencyTime.build)) {
+					return buildStroke;
+				} else {
+					return runStroke;
 
-            public Paint transform(IGenericComp i) {
-                Color retVal;
-                if (i.isStandard()) {
-                    retVal = Color.GRAY;
-                } else {
-                    retVal = Color.WHITE;
-                }
-                return retVal;
-            }
-        };
-        // Set up a new stroke Transformer for the edges
-        float buildDash[] = {0.5f};
-         float runDash[] = {3.5f};
-        final Stroke buildStroke = new BasicStroke(0.5f, BasicStroke.CAP_SQUARE,
-                BasicStroke.JOIN_ROUND, 10.0f, buildDash, 0.0f);
-        final Stroke runStroke = new BasicStroke(0.5f, BasicStroke.CAP_SQUARE,
-                BasicStroke.JOIN_ROUND, 10.0f, runDash, 0.0f);
-        Transformer<IBaseDependency, Stroke> edgeStrokeTransformer = new Transformer<IBaseDependency, Stroke>() {
+				}
+			}
+		};
+		vv.getRenderContext().setVertexFillPaintTransformer(vertexPaint);
+		vv.getRenderContext().setEdgeStrokeTransformer(edgeStrokeTransformer);
+		vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
+		vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller());
+		vv.getRenderer().getVertexLabelRenderer().setPosition(Position.AUTO);
+		vv.setBackground(Color.WHITE);
+		return vv;
 
-            public Stroke transform(IBaseDependency s) {
-                if (s.getInfo().getDepTime().equals(EDependencyTime.build)) {
-                    return buildStroke;
-                } else {
-                    return runStroke;
+	}
 
-                }
-            }
-        };
-        vv.getRenderContext().setVertexFillPaintTransformer(vertexPaint);
-        vv.getRenderContext().setEdgeStrokeTransformer(edgeStrokeTransformer);
-        vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
-        vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller());
-        vv.getRenderer().getVertexLabelRenderer().setPosition(Position.AUTO);
-        vv.setBackground(Color.WHITE);
-        return vv;
+	/**
+	 * @uml.property name="mainFrame"
+	 * 
+	 */
+	private TopFrame mainFrame;
 
-    }
+	/**
+	 * Getter of the property <tt>mainFrame</tt>
+	 * 
+	 * @return Returns the frame.
+	 * @uml.property name="mainFrame"
+	 */
+	public TopFrame getMainFrame() {
+		return mainFrame;
+	}
+
+	/**
+	 * Setter of the property <tt>mainFrame</tt>
+	 * 
+	 * @param mainFrame
+	 *            The frame to set.
+	 * @uml.property name="mainFrame"
+	 */
+	public void setMainFrame(TopFrame mainFrame) {
+		this.mainFrame = mainFrame;
+	}
+
+	/**
+	 * @uml.property name="domCompColl"
+	 * 
+	 * 
+	 */
+	private LinkedList<IGenericComp> domCompColl;
+
+	/**
+	 * Getter of the property <tt>domCompColl</tt>
+	 * 
+	 * @return Returns the domCompColl.
+	 * @uml.property name="domCompColl"
+	 */
+	public LinkedList<IGenericComp> getDomCompColl() {
+		return domCompColl;
+	}
+
+	/**
+	 * Setter of the property <tt>domCompColl</tt>
+	 * 
+	 * @param domCompColl
+	 *            The domCompColl to set.
+	 * @uml.property name="domCompColl"
+	 */
+	public void setDomCompColl(LinkedList<IGenericComp> domCompColl) {
+		this.domCompColl = domCompColl;
+	}
+
+	/**
+	 * @uml.property name="graph"
+	 * 
+	 */
+	private DirectedGraph<IGenericComp, IBaseDependency> graph;
+
+	/**
+	 * Getter of the property <tt>graph</tt>
+	 * 
+	 * @return Returns the graph.
+	 * @uml.property name="graph"
+	 */
+	public DirectedGraph<IGenericComp, IBaseDependency> getGraph() {
+		return graph;
+	}
+
+	/**
+	 * Setter of the property <tt>graph</tt>
+	 * 
+	 * @param graph
+	 *            The graph to set.
+	 * @uml.property name="graph"
+	 */
+	public void setGraph(DirectedGraph<IGenericComp, IBaseDependency> graph) {
+		this.graph = graph;
+	}
+
+	/**
+	 * Rendering component for generated graph.
+	 * 
+	 * @uml.property name="outComp"
+	 */
+	private JComponent outComp;
+
+	/**
+	 * Getter of the property <tt>outComp</tt>
+	 * 
+	 * @return Returns the outComp.
+	 * @uml.property name="outComp"
+	 */
+	public JComponent getOutComp() {
+		return outComp;
+	}
+
+	/**
+	 * Setter of the property <tt>outComp</tt>
+	 * 
+	 * @param outComp
+	 *            The outComp to set.
+	 * @uml.property name="outComp"
+	 */
+	public void setOutComp(JComponent outComp) {
+		this.outComp = outComp;
+	}
+
+	/**
+	 * Performs re-rendering of the ui-graph representation of this graph
+	 */
+	public JComponent refreshGraph() {
+		
+		return this.showGraph(graph);
+	}
 }
