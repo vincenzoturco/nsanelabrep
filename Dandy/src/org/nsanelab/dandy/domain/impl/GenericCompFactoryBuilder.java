@@ -1,10 +1,11 @@
 package org.nsanelab.dandy.domain.impl;
 
+import java.io.Serializable;
 import org.nsanelab.dandy.domain.iface.IGenericCompFactory;
 import org.nsanelab.dandy.domain.iface.IGenericCompFactoryBuilder;
 
 
-public class GenericCompFactoryBuilder implements IGenericCompFactoryBuilder {
+public class GenericCompFactoryBuilder implements IGenericCompFactoryBuilder, Serializable {
 
 	private static IGenericCompFactory factoryInst = null;
 	private static final String factoryImplPath = "org.nsanelab.dandy.domain.impl.GenericCompFactory"; 

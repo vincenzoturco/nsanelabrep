@@ -17,4 +17,6 @@ import org.nsanelab.dandy.domain.iface.IBaseDependency;
 public interface IGraphFactory {
 
    public DirectedGraph<IGenericComp, IBaseDependency> create(Collection<IGenericComp> coll)  ;
+   public boolean isIncludeStandard();
+   public void setIncludeStandard(boolean val);
 }

@@ -1,11 +1,12 @@
 package org.nsanelab.dandy.domain.impl;
 
+import java.io.Serializable;
 import org.nsanelab.dandy.domain.iface.IDependencyInfo;
 import org.nsanelab.dandy.domain.iface.IGenericComp;
 import org.nsanelab.dandy.domain.iface.IUDCDependency;
 
 
-public class UDCDependency implements IUDCDependency {
+public class UDCDependency implements IUDCDependency, Serializable {
 
 	private IDependencyInfo info;
 	private IGenericComp src;

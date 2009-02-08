@@ -1,5 +1,6 @@
 package org.nsanelab.dandy.domain.impl;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.nsanelab.dandy.domain.EDependencyTime;
@@ -15,7 +16,7 @@ import org.nsanelab.dandy.xml.impl.BaseCompDefinition;
 import org.nsanelab.dandy.xml.impl.GenericCompDefinition;
 import org.nsanelab.dandy.xml.impl.GenericDependency;
 
-public class GenericCompFactory implements IGenericCompFactory {
+public class GenericCompFactory implements IGenericCompFactory, Serializable {
 
 	private static final String genericCompImpl = "org.nsanelab.dandy.domain.impl.GenericComp";
 	private static final String genericDepImpl = "org.nsanelab.dandy.domain.impl.UDCDependency";

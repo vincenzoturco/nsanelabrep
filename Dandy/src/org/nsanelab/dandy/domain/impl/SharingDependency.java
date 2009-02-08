@@ -1,11 +1,12 @@
 package org.nsanelab.dandy.domain.impl;
 
+import java.io.Serializable;
 import org.nsanelab.dandy.domain.iface.IDependencyInfo;
 import org.nsanelab.dandy.domain.iface.IGenericComp;
 import org.nsanelab.dandy.domain.iface.ISharingDependency;
 import org.nsanelab.dandy.domain.iface.IUDCDependency;
 
-public class SharingDependency implements ISharingDependency {
+public class SharingDependency implements ISharingDependency, Serializable {
 
 	private IDependencyInfo info;
 	private IGenericComp src;

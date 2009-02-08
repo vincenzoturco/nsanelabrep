@@ -18,6 +18,16 @@ import java.util.Iterator;
  */
 public class GraphFactoryImpl implements IGraphFactory {
 
+    private boolean includeStandard;
+
+    public boolean isIncludeStandard() {
+        return includeStandard;
+    }
+
+    public void setIncludeStandard(boolean includeStandard) {
+        this.includeStandard = includeStandard;
+    }
+
     public DirectedGraph<IGenericComp, IBaseDependency> create(Collection<IGenericComp> coll) {
         DirectedGraph<IGenericComp, IBaseDependency> graph;
         Iterator<IGenericComp> iter;
@@ -25,9 +35,9 @@ public class GraphFactoryImpl implements IGraphFactory {
 
         graph = new DirectedSparseGraph<IGenericComp, IBaseDependency>();
         iter = coll.iterator();
-        while( iter.hasNext() ) {
+        while (iter.hasNext()) {
             tmpComp = iter.next();
-            if (!tmpComp.isStandard() && !graph.containsVertex(tmpComp)) {
+            if ((includeStandard || !tmpComp.isStandard()) && !graph.containsVertex(tmpComp)) {
                 graph.addVertex(tmpComp);
                 addDependenciesToGraph(tmpComp, graph);
             }
@@ -46,7 +56,7 @@ public class GraphFactoryImpl implements IGraphFactory {
         depColl = comp.getOutDep();
 
         for (depIter = depColl.iterator(); depIter.hasNext(); dep = depIter.next()) {
-            if (dep!=null && !dep.getTgt().isStandard() && !dep.getSrc().isStandard() && !graph.containsEdge(dep) ) {
+            if (dep != null && (includeStandard || !dep.getTgt().isStandard()) && (includeStandard || !dep.getSrc().isStandard()) && !graph.containsEdge(dep)) {
                 graph.addEdge(dep, comp, dep.getTgt());
             }
         }

@@ -1,7 +1,7 @@
 package org.nsanelab.dandy.domain.iface;
 
 
-public interface IBaseComp {
+public interface IBaseComp extends IVisitableNode{
 
 	/**
 	 * @return  Returns the name.

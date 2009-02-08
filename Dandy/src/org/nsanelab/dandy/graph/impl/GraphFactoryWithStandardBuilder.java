@@ -9,9 +9,9 @@ import org.nsanelab.dandy.graph.iface.IGraphFactoryBuilder;
 
 /**
  *
- * @author vin
+ * @author I044892
  */
-public class GraphFactoryBuilder implements IGraphFactoryBuilder {
+public class GraphFactoryWithStandardBuilder implements IGraphFactoryBuilder{
 
     private static IGraphFactory factoryInstance = null;
     private static final String factoryImplPath = "org.nsanelab.dandy.graph.impl.GraphFactoryImpl";
@@ -21,7 +21,7 @@ public class GraphFactoryBuilder implements IGraphFactoryBuilder {
             try {
                 Class factClass = Class.forName(factoryImplPath);
                 factoryInstance = (IGraphFactory) factClass.newInstance();
-                factoryInstance.setIncludeStandard(false);
+                factoryInstance.setIncludeStandard(true);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
