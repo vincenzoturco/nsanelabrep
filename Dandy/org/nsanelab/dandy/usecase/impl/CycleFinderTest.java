@@ -17,6 +17,8 @@ import org.nsanelab.dandy.domain.iface.IGenericCompFactory;
 import org.nsanelab.dandy.domain.impl.GenericCompFactoryBuilder;
 import org.nsanelab.dandy.utils.ComponentPath;
 import org.nsanelab.dandy.utils.DependencyCycle;
+import org.nsanelab.dandy.xml.iface.ICompMetadataFactory;
+import org.nsanelab.dandy.xml.impl.CompMetadataFactoryBuilder;
 
 /**
  *
@@ -39,7 +41,9 @@ public class CycleFinderTest {
 
     @Before
     public void setUp() {
-        IGenericCompFactory fact = new GenericCompFactoryBuilder().factoryInstance();
+        IGenericCompFactory compFact = new GenericCompFactoryBuilder().factoryInstance();
+        ICompMetadataFactory metaFact = new CompMetadataFactoryBuilder().factoryInstance();
+     //   this.rootComp = fact.create(compMetadata)
 
     }
 
