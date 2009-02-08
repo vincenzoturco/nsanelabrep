@@ -1,9 +1,10 @@
 package org.nsanelab.dandy.domain.impl;
 
+import java.io.Serializable;
 import org.nsanelab.dandy.domain.EDependencyTime;
 import org.nsanelab.dandy.domain.iface.IDependencyInfo;
 
-public class DependencyInfo implements IDependencyInfo {
+public class DependencyInfo implements IDependencyInfo, Serializable {
 
 	private EDependencyTime depTime;
 	private String pp;

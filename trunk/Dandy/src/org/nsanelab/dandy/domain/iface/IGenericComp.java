@@ -2,7 +2,7 @@ package org.nsanelab.dandy.domain.iface;
 
 import java.util.Collection;
 
-import org.nsanelab.dandy.usecase.iface.IUIGraph;
+import org.nsanelab.dandy.usecase.iface.IUIDependencyGraph;
 
 
 public interface IGenericComp extends IBaseComp {

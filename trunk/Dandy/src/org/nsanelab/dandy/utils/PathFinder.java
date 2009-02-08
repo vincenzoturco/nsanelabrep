@@ -7,6 +7,7 @@ package org.nsanelab.dandy.utils;
 import java.io.File;
 import java.util.Collection;
 import java.util.LinkedList;
+import org.nsanelab.dandy.exceptions.NoDescriptorFoundException;
 
 /**
  *
@@ -19,7 +20,7 @@ public class PathFinder {
      * @param rootPath
      * @return
      */
-    public static Collection<String> getDescriptors(String rootPath) {
+    public static Collection<String> getDescriptors(String rootPath){
         File root, temp;
         File[] childrenList;
         Collection<String> descPathList;
@@ -44,6 +45,7 @@ public class PathFinder {
             }
 
         }
+      
         return descPathList;
     }
 }
