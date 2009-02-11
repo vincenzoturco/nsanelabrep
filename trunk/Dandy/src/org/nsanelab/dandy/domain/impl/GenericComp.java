@@ -3,6 +3,7 @@ package org.nsanelab.dandy.domain.impl;
 import java.io.Serializable;
 import java.util.Collection;
 
+import java.util.LinkedHashSet;
 import org.nsanelab.dandy.domain.iface.IBaseDependency;
 import org.nsanelab.dandy.domain.iface.IGenericComp;
 import org.nsanelab.dandy.domain.iface.IGraphVisitor;
@@ -13,6 +14,11 @@ public class GenericComp implements IGenericComp, Serializable {
     private Collection<IBaseDependency> outDep;
     private String name;
     private String vendor;
+
+    public GenericComp() {
+        this.inDep = new LinkedHashSet<IBaseDependency>();
+        this.outDep = new LinkedHashSet<IBaseDependency>();
+    }
 
     public boolean isStandard() {
         return this.vendor.equals("sap.com");

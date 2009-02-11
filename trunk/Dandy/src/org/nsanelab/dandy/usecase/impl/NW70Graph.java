@@ -43,7 +43,7 @@ import org.nsanelab.dandy.graph.iface.IGraphFactory;
 import org.nsanelab.dandy.graph.iface.IGraphFactoryBuilder;
 import org.nsanelab.dandy.graph.impl.GraphFactoryBuilder;
 import org.nsanelab.dandy.graph.impl.GraphFactoryWithStandardBuilder;
-import org.nsanelab.dandy.ui.impl.StatusManager;
+import org.nsanelab.dandy.ui.impl.StatusMngr;
 import org.nsanelab.dandy.ui.impl.TopFrame;
 
 /**
@@ -83,14 +83,14 @@ public class NW70Graph extends SwingWorker<Void, Void> implements IUIDependencyG
         // chooser.addChoosableFileFilter (new FileNameExtensionFilter
         // ("File XML", "xml"));
 
-        this.mainFrame.setOperationRunning(StatusManager.ST_SELECTING);
+        this.mainFrame.setOperationRunning(StatusMngr.ST_SELECTING);
         int returnVal = chooser.showOpenDialog(mainFrame);
 
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             retVal = chooser.getSelectedFile().getAbsolutePath();
 
         } else {
-            this.mainFrame.setOperationStopped(StatusManager.ST_ABORTED);
+            this.mainFrame.setOperationStopped(StatusMngr.ST_ABORTED);
             return;
         }
 
@@ -100,12 +100,12 @@ public class NW70Graph extends SwingWorker<Void, Void> implements IUIDependencyG
         domCompColl = new LinkedList<IGenericComp>();
         if (descPaths.size() == 0) {
             //no descriptor found
-            this.mainFrame.setOperationStopped(StatusManager.ST_NO_DC_FOUND);
+            this.mainFrame.setOperationStopped(StatusMngr.ST_NO_DC_FOUND);
             return;
 
         } else {
             //set the ui status
-            this.mainFrame.setOperationRunning(StatusManager.ST_GRAPH_GENERATION);
+            this.mainFrame.setOperationRunning(StatusMngr.ST_GRAPH_GENERATION);
             for (descPathStr = descPaths.iterator(); descPathStr.hasNext();) {
                 try {
                     domCompColl.add(domFactory.create(xmlfactory.create(descPathStr.next())));
@@ -124,8 +124,8 @@ public class NW70Graph extends SwingWorker<Void, Void> implements IUIDependencyG
             this.mainFrame.getTabs().setSelectedComponent(outComp);
             this.mainFrame.setAllIcons();
             //set the ui status
-            this.mainFrame.setOperationStopped(StatusManager.ST_TASK_COMPLETE);
-            this.mainFrame.setOperationCompletionLevel(StatusManager.DEFAULT_TASK_SIZE, StatusManager.DEFAULT_TASK_SIZE);
+            this.mainFrame.setOperationStopped(StatusMngr.ST_TASK_COMPLETE);
+            this.mainFrame.setOperationCompletionLevel(StatusMngr.DEFAULT_TASK_SIZE, StatusMngr.DEFAULT_TASK_SIZE);
         }
     }
 

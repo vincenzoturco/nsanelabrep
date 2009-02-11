@@ -55,7 +55,7 @@ public class TopFrame extends javax.swing.JFrame implements ActionListener, Prop
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        statusMgr = new org.nsanelab.dandy.ui.impl.StatusManager();
+        statusMgr = new org.nsanelab.dandy.ui.impl.StatusMngr();
         jDialog1 = new javax.swing.JDialog();
         popupMessage = new javax.swing.JLabel();
         tabs = new javax.swing.JTabbedPane();
@@ -328,7 +328,6 @@ public class TopFrame extends javax.swing.JFrame implements ActionListener, Prop
         // TODO add your handling code here:
         try {
             FileOutputStream fos = new FileOutputStream("C:\\test.xml");
-
             ObjectOutputStream oos = new ObjectOutputStream(fos);
 
             oos.writeObject(getGraphs().iterator().next());
@@ -370,9 +369,9 @@ public class TopFrame extends javax.swing.JFrame implements ActionListener, Prop
         this.setTitle("Dependency graph generator");
         this.graphs = new LinkedHashSet<IUIDependencyGraph>();
         this.statusMgr.setIndeterminate(false);
-        this.statusMgr.setStatus(StatusManager.ST_READY);
-        this.statusMgr.setTaskCurrentStatus(StatusManager.DEFAULT_TASK_SIZE);
-        this.statusMgr.setTaskSize(StatusManager.DEFAULT_TASK_SIZE);
+        this.statusMgr.setStatus(StatusMngr.ST_READY);
+        this.statusMgr.setTaskCurrentStatus(StatusMngr.DEFAULT_TASK_SIZE);
+        this.statusMgr.setTaskSize(StatusMngr.DEFAULT_TASK_SIZE);
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension screenSize = toolkit.getScreenSize();
         int x = (screenSize.width - this.getWidth()) / 2;
@@ -397,12 +396,12 @@ public class TopFrame extends javax.swing.JFrame implements ActionListener, Prop
         this.statusMgr.setTaskSize(maxSize);
     }
 
-    public StatusManager getStatusMgr() {
+    public StatusMngr getStatusMgr() {
         return statusMgr;
     }
 
-    public void setStatusMgr(StatusManager statusMgr) {
-        StatusManager oldStMgr;
+    public void setStatusMgr(StatusMngr statusMgr) {
+        StatusMngr oldStMgr;
 
         oldStMgr = this.statusMgr;
         this.statusMgr = statusMgr;
@@ -421,7 +420,7 @@ public class TopFrame extends javax.swing.JFrame implements ActionListener, Prop
         String title;
 
         graphArray = this.graphs.toArray(new IUIDependencyGraph[0]);
-            graph = graphArray[idx];
+        graph = graphArray[idx];
         renderedGraph = graph.refreshGraph();
 
         title = this.tabs.getTitleAt(idx);
@@ -547,7 +546,7 @@ public class TopFrame extends javax.swing.JFrame implements ActionListener, Prop
     private javax.swing.JMenuItem newSave;
     private javax.swing.JLabel popupMessage;
     private javax.swing.JLabel statusLbl;
-    private org.nsanelab.dandy.ui.impl.StatusManager statusMgr;
+    private org.nsanelab.dandy.ui.impl.StatusMngr statusMgr;
     private javax.swing.JTabbedPane tabs;
     private javax.swing.JMenu topEdit;
     private javax.swing.JMenu topFile;
