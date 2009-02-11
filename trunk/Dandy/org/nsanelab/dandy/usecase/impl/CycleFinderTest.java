@@ -144,6 +144,7 @@ public class CycleFinderTest {
      */
     @Test
     public void testVisit() {
+        
         System.out.println("visit");
         CycleFinder instance = new CycleFinder();
         instance.setGraph(this.graph);
