@@ -37,8 +37,12 @@ public class GraphFactoryImpl implements IGraphFactory {
         iter = coll.iterator();
         while (iter.hasNext()) {
             tmpComp = iter.next();
+            //vertices should be added if and only if:( they are standard and standard is allowed OR they are not standard ) AND the very vertex has not been addded yet
             if ((includeStandard || !tmpComp.isStandard()) && !graph.containsVertex(tmpComp)) {
                 graph.addVertex(tmpComp);
+            }
+            //edges should be added if and only if the related vertex is already added
+            if (graph.containsVertex(tmpComp)) {
                 addDependenciesToGraph(tmpComp, graph);
             }
 
@@ -54,8 +58,10 @@ public class GraphFactoryImpl implements IGraphFactory {
         Iterator<IBaseDependency> depIter;
 
         depColl = comp.getOutDep();
+        depIter = depColl.iterator();
 
-        for (depIter = depColl.iterator(); depIter.hasNext(); dep = depIter.next()) {
+        while (depIter.hasNext()) {
+            dep = depIter.next();
             if (dep != null && (includeStandard || !dep.getTgt().isStandard()) && (includeStandard || !dep.getSrc().isStandard()) && !graph.containsEdge(dep)) {
                 graph.addEdge(dep, comp, dep.getTgt());
             }

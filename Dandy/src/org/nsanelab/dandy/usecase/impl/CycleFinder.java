@@ -4,6 +4,10 @@
  */
 package org.nsanelab.dandy.usecase.impl;
 
+import edu.uci.ics.jung.graph.DirectedGraph;
+import edu.uci.ics.jung.graph.DirectedSparseGraph;
+import edu.uci.ics.jung.graph.util.Pair;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import org.nsanelab.dandy.domain.iface.IBaseDependency;
@@ -18,8 +22,16 @@ import org.nsanelab.dandy.utils.DependencyCycle;
  */
 public class CycleFinder implements ICycleFinder {
 
+    public DirectedGraph<IGenericComp, IBaseDependency> getGraph() {
+        return graph;
+    }
+
+    public void setGraph(DirectedGraph<IGenericComp, IBaseDependency> graph) {
+        this.graph = graph;
+    }
     private ComponentPath visitedComponents;
     private LinkedHashSet<DependencyCycle> foundCycles;
+    private DirectedGraph<IGenericComp, IBaseDependency> graph;
 
     public LinkedHashSet<DependencyCycle> getFoundCycles() {
         return foundCycles;
@@ -33,6 +45,7 @@ public class CycleFinder implements ICycleFinder {
         return visitedComponents;
     }
 
+    @Override
     public void setVisitedComponents(ComponentPath visitedComponents) {
         this.visitedComponents = visitedComponents;
     }
@@ -40,12 +53,21 @@ public class CycleFinder implements ICycleFinder {
     public CycleFinder() {
         this.visitedComponents = new ComponentPath();
         this.foundCycles = new LinkedHashSet<DependencyCycle>();
+        this.graph = new DirectedSparseGraph<IGenericComp, IBaseDependency>();
 
     }
 
     public CycleFinder(ComponentPath comps) {
         this.visitedComponents = comps;
         this.foundCycles = new LinkedHashSet<DependencyCycle>();
+        this.graph = new DirectedSparseGraph<IGenericComp, IBaseDependency>();
+    }
+
+    public CycleFinder(DirectedGraph<IGenericComp, IBaseDependency> graph) {
+        this.visitedComponents = new ComponentPath();
+        this.foundCycles = new LinkedHashSet<DependencyCycle>();
+        this.graph = graph;
+
     }
 
     @Override
@@ -68,14 +90,32 @@ public class CycleFinder implements ICycleFinder {
             Iterator<IBaseDependency> depIter;
             CycleFinder cycleFnd;
 
-            depIter = node.getOutDep().iterator();
+            Collection coll = this.graph.getOutEdges(node);
 
-            while (depIter.hasNext()) {
-                cycleFnd = new CycleFinder(this.visitedComponents);
-                //recursive step
-                cycleFnd.visit(depIter.next().getTgt());
-                this.foundCycles.addAll(cycleFnd.getFoundCycles());
-               
+            //update the followed path
+            this.visitedComponents.add(node);
+            System.out.println("componenti visitati: "+this.visitedComponents);
+            System.out.println("tutti gli archi: "+this.graph.getEdges());
+            //outedges collection is null if not out edge is there
+            if (coll != null) {
+                depIter = coll.iterator();
+            } else {
+                depIter = null;
+            }
+            //to prevent null pointers, we iterate only if the edge list is not null
+            if (depIter != null) {
+                while (depIter.hasNext()) {
+                    //init for recursive call to CycleFinder new instance
+                    cycleFnd = new CycleFinder((ComponentPath)this.visitedComponents.clone());
+                    cycleFnd.setGraph(this.graph);
+                    //recursive step
+                    Pair<IGenericComp> pair = this.graph.getEndpoints(depIter.next());
+                    cycleFnd.visit(pair.getSecond());
+                    this.foundCycles.addAll(cycleFnd.getFoundCycles());
+
+                }
+            } else{
+                System.out.println("null out edges for: "+node);
             }
 
         }

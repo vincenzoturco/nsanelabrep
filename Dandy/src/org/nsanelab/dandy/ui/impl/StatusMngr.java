@@ -12,7 +12,7 @@ import java.io.Serializable;
  *
  * @author I044892
  */
-public class StatusManager implements Serializable {
+public class StatusMngr implements Serializable {
 
    
     private String status;
@@ -37,7 +37,7 @@ public class StatusManager implements Serializable {
         changeSupport.removePropertyChangeListener(listener);
     }
 
-    public StatusManager() {
+    public StatusMngr() {
     }
 
     public boolean isIndeterminate() {
