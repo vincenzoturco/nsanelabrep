@@ -4,6 +4,7 @@
  */
 package org.nsanelab.dandy.utils;
 
+import org.nsanelab.dandy.domain.EDependencyTime;
 import org.nsanelab.dandy.domain.iface.IGenericComp;
 import org.nsanelab.dandy.domain.impl.GenericComp;
 
@@ -12,25 +13,27 @@ import org.nsanelab.dandy.domain.impl.GenericComp;
  * @author I044892
  */
 public class DependencyCycle extends ComponentPath {
+    private EDependencyTime depType;
 
-    private IGenericComp repeatedNode;
+    public EDependencyTime getDepType() {
+        return depType;
+    }
 
-    public DependencyCycle() {
+    public void setDepType(EDependencyTime depType) {
+        this.depType = depType;
+    }
+    
+    /**
+     * Constructor with package scope
+     */
+    DependencyCycle() {
         super();
-        this.repeatedNode = null;
+        this.depType = EDependencyTime.unspecified;
+
     }
 
     public DependencyCycle(ComponentPath param) {
         super(param);
-        this.repeatedNode = null;
+        
     }
-
-    public IGenericComp getRepeatedNode() {
-        return repeatedNode;
-    }
-
-    public void setRepeatedNode(IGenericComp repeatedNode) {
-        this.repeatedNode = repeatedNode;
-    }
-    
 }

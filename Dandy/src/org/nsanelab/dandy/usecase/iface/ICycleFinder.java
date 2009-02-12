@@ -24,7 +24,16 @@ public interface ICycleFinder extends IGraphVisitor {
      */
     public LinkedHashSet<DependencyCycle> getFoundCycles();
 
+    public void setFoundCycles(LinkedHashSet<DependencyCycle> par);
+
+    /**
+     * Lists all the visited nodes reached starting from this node
+     * @return the list of nodes visited during the graph traversal this node was involved in
+     */
+    public LinkedHashSet<IGenericComp> getVisitedSubtree();
+
     public void setGraph(DirectedGraph<IGenericComp, IBaseDependency> graph);
 
     public void setVisitedComponents(ComponentPath visitedComponents);
+    public ComponentPath getVisitedComponents();
 }

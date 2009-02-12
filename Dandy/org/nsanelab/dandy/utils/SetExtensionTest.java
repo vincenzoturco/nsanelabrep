@@ -75,4 +75,46 @@ public class SetExtensionTest {
     // TODO review the generated test code and remove the default call to fail.
 
     }
+
+    /**
+     * Test of getASet method, of class SetExtension.
+     */
+    @Test
+    public void testGetASet() {
+        System.out.println("getASet");
+        SetExtension instance = new SetExtension();
+        Set expResult = null;
+        Set result = instance.getASet();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setASet method, of class SetExtension.
+     */
+    @Test
+    public void testSetASet() {
+        System.out.println("setASet");
+        Set aSet = null;
+        SetExtension instance = new SetExtension();
+        instance.setASet(aSet);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of remove method, of class SetExtension.
+     */
+    @Test
+    public void testRemove_int() {
+        System.out.println("remove");
+        int index = 0;
+        SetExtension instance = new SetExtension();
+        Set expResult = null;
+        Set result = instance.remove(index);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
 }

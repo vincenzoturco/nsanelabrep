@@ -7,6 +7,7 @@ import java.util.LinkedHashSet;
 import org.nsanelab.dandy.domain.iface.IBaseDependency;
 import org.nsanelab.dandy.domain.iface.IGenericComp;
 import org.nsanelab.dandy.domain.iface.IGraphVisitor;
+import org.nsanelab.dandy.exceptions.GraphTraversalException;
 
 public class GenericComp implements IGenericComp, Serializable {
 
@@ -81,13 +82,13 @@ public class GenericComp implements IGenericComp, Serializable {
     public String toString() {
         String retVal;
         retVal = this.vendor + "/" + this.name;
-        retVal = "..." + retVal.substring(retVal.lastIndexOf('/'));
+        retVal = this.vendor+"/..." + retVal.substring(retVal.lastIndexOf('/'));
 
         return retVal;
     }
 
     @Override
-    public void accept(IGraphVisitor visitor) {
+    public void accept(IGraphVisitor visitor) throws GraphTraversalException{
         visitor.visit(this);
     }
 }

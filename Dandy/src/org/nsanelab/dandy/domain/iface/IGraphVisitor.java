@@ -5,8 +5,7 @@
 
 package org.nsanelab.dandy.domain.iface;
 
-import org.nsanelab.dandy.exceptions.DependencyCycleException;
-import org.nsanelab.dandy.utils.DependencyCycle;
+import org.nsanelab.dandy.exceptions.GraphTraversalException;
 
 /**
  *
@@ -14,6 +13,6 @@ import org.nsanelab.dandy.utils.DependencyCycle;
  */
 public interface IGraphVisitor {
 
-    public void visit(IGenericComp node);
+    public void visit(IGenericComp node) throws GraphTraversalException;
 
 }
