@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.nsanelab.dandy.usecase.impl;
+package org.nsanelab.dandy.domain.impl;
 
 import edu.uci.ics.jung.graph.DirectedGraph;
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
@@ -12,20 +12,23 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import org.nsanelab.dandy.domain.iface.IBaseDependency;
 import org.nsanelab.dandy.domain.iface.IGenericComp;
+import org.nsanelab.dandy.exceptions.CycleDetectionException;
 import org.nsanelab.dandy.usecase.iface.ICycleFinder;
 import org.nsanelab.dandy.utils.ComponentPath;
 import org.nsanelab.dandy.utils.DependencyCycle;
+import org.nsanelab.dandy.utils.DependencyCycleFactory;
 
 /**
  *
  * @author I044892
  */
-public class CycleFinder implements ICycleFinder {
+public abstract class CycleFinder implements ICycleFinder {
 
     public DirectedGraph<IGenericComp, IBaseDependency> getGraph() {
         return graph;
     }
 
+    @Override
     public void setGraph(DirectedGraph<IGenericComp, IBaseDependency> graph) {
         this.graph = graph;
     }
@@ -33,14 +36,20 @@ public class CycleFinder implements ICycleFinder {
     private LinkedHashSet<DependencyCycle> foundCycles;
     private DirectedGraph<IGenericComp, IBaseDependency> graph;
 
+    //used to keep track of the nodes visited during recursion
+    private LinkedHashSet<IGenericComp> visitedSubtree;
+
+    @Override
     public LinkedHashSet<DependencyCycle> getFoundCycles() {
         return foundCycles;
     }
 
+    @Override
     public void setFoundCycles(LinkedHashSet<DependencyCycle> foundCycles) {
         this.foundCycles = foundCycles;
     }
 
+    @Override
     public ComponentPath getVisitedComponents() {
         return visitedComponents;
     }
@@ -54,6 +63,7 @@ public class CycleFinder implements ICycleFinder {
         this.visitedComponents = new ComponentPath();
         this.foundCycles = new LinkedHashSet<DependencyCycle>();
         this.graph = new DirectedSparseGraph<IGenericComp, IBaseDependency>();
+        this.visitedSubtree = new LinkedHashSet<IGenericComp>();
 
     }
 
@@ -61,12 +71,14 @@ public class CycleFinder implements ICycleFinder {
         this.visitedComponents = comps;
         this.foundCycles = new LinkedHashSet<DependencyCycle>();
         this.graph = new DirectedSparseGraph<IGenericComp, IBaseDependency>();
+        this.visitedSubtree = new LinkedHashSet<IGenericComp>();
     }
 
     public CycleFinder(DirectedGraph<IGenericComp, IBaseDependency> graph) {
         this.visitedComponents = new ComponentPath();
         this.foundCycles = new LinkedHashSet<DependencyCycle>();
         this.graph = graph;
+        this.visitedSubtree = new LinkedHashSet<IGenericComp>();
 
     }
 
@@ -76,16 +88,21 @@ public class CycleFinder implements ICycleFinder {
      * The loop list is found in the instance variable <b>foundCycles</b>.
      * @param node the node from which graph traversal is to be started
      */
-    public void visit(IGenericComp node) {
+    public void visit(IGenericComp node) throws CycleDetectionException {
         boolean cycleFound;
 
         cycleFound = visitedComponents.contains(node);
 
         if (cycleFound) {
+            try {
+                DependencyCycle depCycle;
+                depCycle = new DependencyCycleFactory().create(visitedComponents, node);
+                this.foundCycles.add(depCycle);
+            } catch (IllegalArgumentException ex) {
+                throw new CycleDetectionException(ex.getMessage());
+            }
 
-            DependencyCycle depCycle = new DependencyCycle(visitedComponents);
-            depCycle.setRepeatedNode(node);
-            this.foundCycles.add(depCycle);
+
         } else {
             Iterator<IBaseDependency> depIter;
             CycleFinder cycleFnd;
@@ -94,8 +111,8 @@ public class CycleFinder implements ICycleFinder {
 
             //update the followed path
             this.visitedComponents.add(node);
-            System.out.println("componenti visitati: "+this.visitedComponents);
-            System.out.println("tutti gli archi: "+this.graph.getEdges());
+            System.out.println("componenti visitati: " + this.visitedComponents);
+            System.out.println("tutti gli archi: " + this.graph.getEdges());
             //outedges collection is null if not out edge is there
             if (coll != null) {
                 depIter = coll.iterator();
@@ -106,18 +123,37 @@ public class CycleFinder implements ICycleFinder {
             if (depIter != null) {
                 while (depIter.hasNext()) {
                     //init for recursive call to CycleFinder new instance
-                    cycleFnd = new CycleFinder((ComponentPath)this.visitedComponents.clone());
-                    cycleFnd.setGraph(this.graph);
-                    //recursive step
-                    Pair<IGenericComp> pair = this.graph.getEndpoints(depIter.next());
-                    cycleFnd.visit(pair.getSecond());
-                    this.foundCycles.addAll(cycleFnd.getFoundCycles());
+                    IBaseDependency tmpEdge;
+
+                    tmpEdge = depIter.next();
+                    if (this.validateEdge(tmpEdge)) {
+                        //with regard to the existence of different edge types, all extending subclasses must override a method to determine which edges must be visited
+                        cycleFnd = createNewInstance();
+                        cycleFnd.setGraph(this.graph);
+                        cycleFnd.setVisitedComponents((ComponentPath) this.visitedComponents.clone());
+                        //recursive step
+                        Pair<IGenericComp> pair = this.graph.getEndpoints(tmpEdge);
+                        cycleFnd.visit(pair.getSecond());
+                        this.foundCycles.addAll(cycleFnd.getFoundCycles());
+
+                        //let's keep track of the nodes visited by the recursive steps
+                        this.visitedSubtree.addAll(cycleFnd.getVisitedComponents());
+                    }
 
                 }
-            } else{
-                System.out.println("null out edges for: "+node);
+            } else {
+                System.out.println("null out edges for: " + node);
             }
 
         }
     }
+
+    @Override
+    public LinkedHashSet<IGenericComp> getVisitedSubtree() {
+        return this.visitedSubtree;
+    }
+
+    protected abstract boolean validateEdge(IBaseDependency tmpEdge);
+
+    public abstract CycleFinder createNewInstance();
 }

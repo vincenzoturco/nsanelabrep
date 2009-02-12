@@ -8,7 +8,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import javax.swing.JFileChooser;
-import javax.swing.JTabbedPane;
 
 import org.nsanelab.dandy.domain.iface.IGenericComp;
 import org.nsanelab.dandy.domain.iface.IGenericCompFactory;
@@ -38,13 +37,16 @@ import javax.swing.SwingWorker;
 import org.apache.commons.collections15.Transformer;
 import org.nsanelab.dandy.domain.EDependencyTime;
 import org.nsanelab.dandy.domain.iface.IBaseDependency;
-import org.nsanelab.dandy.exceptions.NoDescriptorFoundException;
+import org.nsanelab.dandy.domain.impl.DcUsageCycleFinderFactoryBuilder;
+import org.nsanelab.dandy.exceptions.GraphTraversalException;
 import org.nsanelab.dandy.graph.iface.IGraphFactory;
 import org.nsanelab.dandy.graph.iface.IGraphFactoryBuilder;
 import org.nsanelab.dandy.graph.impl.GraphFactoryBuilder;
 import org.nsanelab.dandy.graph.impl.GraphFactoryWithStandardBuilder;
+
 import org.nsanelab.dandy.ui.impl.StatusMngr;
 import org.nsanelab.dandy.ui.impl.TopFrame;
+import org.nsanelab.dandy.utils.DependencyCycle;
 
 /**
  * @author vin
@@ -59,6 +61,7 @@ public class NW70Graph extends SwingWorker<Void, Void> implements IUIDependencyG
     public NW70Graph(TopFrame frame) {
         this.mainFrame = frame;
         this.includeStandard = false;
+        this.depCycles = new LinkedList<DependencyCycle>();
     }
 
     /*
@@ -66,6 +69,7 @@ public class NW70Graph extends SwingWorker<Void, Void> implements IUIDependencyG
      *
      * @see org.nsanelab.dandy.usecase.impl.UIGraph#doGraph()
      */
+    @Override
     public void doGraph() {
         ICompMetadataFactoryBuilder xmlbuilder = new CompMetadataFactoryBuilder();
         ICompMetadataFactory xmlfactory = xmlbuilder.factoryInstance();
@@ -93,7 +97,7 @@ public class NW70Graph extends SwingWorker<Void, Void> implements IUIDependencyG
             this.mainFrame.setOperationStopped(StatusMngr.ST_ABORTED);
             return;
         }
-
+        this.mainFrame.setOperationRunning(StatusMngr.ST_GRAPH_GENERATION);
         descPaths = PathFinder.getDescriptors(retVal);
 
         // xmlCompColl = new LinkedList<ICompMetadata>();
@@ -105,7 +109,7 @@ public class NW70Graph extends SwingWorker<Void, Void> implements IUIDependencyG
 
         } else {
             //set the ui status
-            this.mainFrame.setOperationRunning(StatusMngr.ST_GRAPH_GENERATION);
+
             for (descPathStr = descPaths.iterator(); descPathStr.hasNext();) {
                 try {
                     domCompColl.add(domFactory.create(xmlfactory.create(descPathStr.next())));
@@ -212,6 +216,7 @@ public class NW70Graph extends SwingWorker<Void, Void> implements IUIDependencyG
      *
      */
     private LinkedList<IGenericComp> domCompColl;
+    private LinkedList<DependencyCycle> depCycles;
 
     /**
      * Getter of the property <tt>domCompColl</tt>
@@ -290,8 +295,16 @@ public class NW70Graph extends SwingWorker<Void, Void> implements IUIDependencyG
     /**
      * Performs re-rendering of the ui-graph representation of this graph
      */
+    @Override
     public JComponent refreshGraph() {
-
+        //test
+        try {
+            this.checkComponentDefinitionCycles();
+            System.out.println(this.depCycles);
+        } catch (Exception exc) {
+            System.out.println(exc.getMessage());
+        }
+        //end test
         return this.showGraph(graph);
     }
 
@@ -322,13 +335,29 @@ public class NW70Graph extends SwingWorker<Void, Void> implements IUIDependencyG
     }
 
     @Override
-    public boolean checkRuntimeCycles() {
+    public boolean checkSharedRefCycles() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public boolean checkComponentDefinitionCycles() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    /**
+     * Checks whether dependency cycles are found in the graph associated with this object.
+     * Found cycles are added to this.<b>depCycles</b> collection.
+     * @return true if cycles are discovered, false otherwise
+     */
+    public boolean checkComponentDefinitionCycles() throws GraphTraversalException {
+        GraphCycleFinder fndr;
+
+        fndr = new GraphCycleFinder(graph, new DcUsageCycleFinderFactoryBuilder().factoryInstance());
+        fndr.doCycleSearch();
+        this.depCycles.addAll(fndr.getDetectedCycles());
+
+        return fndr.getDetectedCycles().size() != 0;
+    }
+
+    @Override
+    public Collection<DependencyCycle> getDependencyCycles() {
+        return this.depCycles;
     }
 }
 

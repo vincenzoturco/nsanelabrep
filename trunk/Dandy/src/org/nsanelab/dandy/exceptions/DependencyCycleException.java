@@ -9,6 +9,6 @@ package org.nsanelab.dandy.exceptions;
  *
  * @author I044892
  */
-public class DependencyCycleException extends Exception {
+public class DependencyCycleException extends GraphTraversalException {
 
 }
