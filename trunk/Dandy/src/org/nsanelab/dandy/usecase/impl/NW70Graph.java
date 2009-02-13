@@ -175,10 +175,14 @@ public class NW70Graph extends SwingWorker<Void, Void> implements IUIDependencyG
                 }
             }
         };
+
+        Transformer<IBaseDependency, Paint> edgePaint = new EdgePaintTransformer(this.depCycles);
+
         vv.getRenderContext().setVertexFillPaintTransformer(vertexPaint);
         vv.getRenderContext().setEdgeStrokeTransformer(edgeStrokeTransformer);
         vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
         vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller());
+        vv.getRenderContext().setEdgeDrawPaintTransformer(edgePaint);
         vv.getRenderer().getVertexLabelRenderer().setPosition(Position.AUTO);
         vv.setBackground(Color.WHITE);
         return vv;

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_nnYPYNNzEd2Ng5VTYGY20A" name="Package">
+  <elementImport xmi:id="_nudHwNNzEd2Ng5VTYGY20A">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+  </elementImport>
+  <elementImport xmi:id="_nvWfoNNzEd2Ng5VTYGY20A">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+  </elementImport>
+  <elementImport xmi:id="_nvXGsNNzEd2Ng5VTYGY20A">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#UnlimitedNatural"/>
+  </elementImport>
+  <elementImport xmi:id="_nvXGsdNzEd2Ng5VTYGY20A">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_uW1xANNzEd2Ng5VTYGY20A" name="IGenericComp">
+    <generalization xmi:id="_2EARANNzEd2Ng5VTYGY20A" general="_zVTPENNzEd2Ng5VTYGY20A"/>
+    <ownedAttribute xmi:id="_apqJ0NN1Ed2Ng5VTYGY20A" name="dst" type="_8BIhUNN0Ed2Ng5VTYGY20A" association="_apo7sNN1Ed2Ng5VTYGY20A">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_apqw4NN1Ed2Ng5VTYGY20A" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_apqJ0dN1Ed2Ng5VTYGY20A" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_zVTPENNzEd2Ng5VTYGY20A" name="IBaseComp"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_4xX2MNNzEd2Ng5VTYGY20A" name="BaseCompImpl" clientDependency="_QABHENN0Ed2Ng5VTYGY20A">
+    <ownedAttribute xmi:id="_14HUoNN0Ed2Ng5VTYGY20A" name="vendor" aggregation="composite"/>
+    <ownedAttribute xmi:id="_2k47ENN0Ed2Ng5VTYGY20A" name="name" aggregation="composite"/>
+    <interfaceRealization xmi:id="_QABHENN0Ed2Ng5VTYGY20A" supplier="_zVTPENNzEd2Ng5VTYGY20A" client="_4xX2MNNzEd2Ng5VTYGY20A" contract="_zVTPENNzEd2Ng5VTYGY20A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_XD5ZgNN0Ed2Ng5VTYGY20A" name="GenericCompImpl" clientDependency="_YvYD4NN0Ed2Ng5VTYGY20A">
+    <generalization xmi:id="_ZUxP8NN0Ed2Ng5VTYGY20A" general="_4xX2MNNzEd2Ng5VTYGY20A"/>
+    <ownedAttribute xmi:id="_DtvnsNN1Ed2Ng5VTYGY20A" name="dst" type="_-fk5sNN0Ed2Ng5VTYGY20A">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DtwOwNN1Ed2Ng5VTYGY20A" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DtvnsdN1Ed2Ng5VTYGY20A" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_g0rFItN2Ed2Ng5VTYGY20A" name="dst" type="_-fk5sNN0Ed2Ng5VTYGY20A" association="_g0qeENN2Ed2Ng5VTYGY20A">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_g0rsMdN2Ed2Ng5VTYGY20A" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_g0rsMNN2Ed2Ng5VTYGY20A" value="1"/>
+    </ownedAttribute>
+    <interfaceRealization xmi:id="_YvYD4NN0Ed2Ng5VTYGY20A" supplier="_uW1xANNzEd2Ng5VTYGY20A" client="_XD5ZgNN0Ed2Ng5VTYGY20A" contract="_uW1xANNzEd2Ng5VTYGY20A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_8BIhUNN0Ed2Ng5VTYGY20A" name="ICompDependency">
+    <ownedAttribute xmi:id="_eX6kQNN1Ed2Ng5VTYGY20A" name="dst" type="_zVTPENNzEd2Ng5VTYGY20A" association="_eX5WINN1Ed2Ng5VTYGY20A">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eX6kQtN1Ed2Ng5VTYGY20A" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eX6kQdN1Ed2Ng5VTYGY20A" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_-fk5sNN0Ed2Ng5VTYGY20A" name="CompDependencyImpl" clientDependency="_Bhi14NN1Ed2Ng5VTYGY20A">
+    <interfaceRealization xmi:id="_Bhi14NN1Ed2Ng5VTYGY20A" supplier="_8BIhUNN0Ed2Ng5VTYGY20A" client="_-fk5sNN0Ed2Ng5VTYGY20A" contract="_8BIhUNN0Ed2Ng5VTYGY20A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_Yzjj0NN1Ed2Ng5VTYGY20A" memberEnd="_YzkK4NN1Ed2Ng5VTYGY20A _Yzkx8dN1Ed2Ng5VTYGY20A">
+    <ownedEnd xmi:id="_YzkK4NN1Ed2Ng5VTYGY20A" name="src" association="_Yzjj0NN1Ed2Ng5VTYGY20A">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Yzkx8NN1Ed2Ng5VTYGY20A" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YzkK4dN1Ed2Ng5VTYGY20A" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_Yzkx8dN1Ed2Ng5VTYGY20A" name="dst" association="_Yzjj0NN1Ed2Ng5VTYGY20A">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Yzkx89N1Ed2Ng5VTYGY20A" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Yzkx8tN1Ed2Ng5VTYGY20A" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_apo7sNN1Ed2Ng5VTYGY20A" name="dependencies" memberEnd="_appiwNN1Ed2Ng5VTYGY20A _apqJ0NN1Ed2Ng5VTYGY20A">
+    <ownedEnd xmi:id="_appiwNN1Ed2Ng5VTYGY20A" name="src" type="_uW1xANNzEd2Ng5VTYGY20A" association="_apo7sNN1Ed2Ng5VTYGY20A">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_appiwtN1Ed2Ng5VTYGY20A" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_appiwdN1Ed2Ng5VTYGY20A" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_eX5WINN1Ed2Ng5VTYGY20A" name="master" memberEnd="_eX59MNN1Ed2Ng5VTYGY20A _eX6kQNN1Ed2Ng5VTYGY20A">
+    <ownedEnd xmi:id="_eX59MNN1Ed2Ng5VTYGY20A" name="src" type="_8BIhUNN0Ed2Ng5VTYGY20A" association="_eX5WINN1Ed2Ng5VTYGY20A">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eX59MtN1Ed2Ng5VTYGY20A" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eX59MdN1Ed2Ng5VTYGY20A" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_zerioNN1Ed2Ng5VTYGY20A" name="IBaseCompFactory" clientDependency="_LYsEsNN2Ed2Ng5VTYGY20A"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_855f4NN1Ed2Ng5VTYGY20A" name="IGenericCompFactory" clientDependency="_OMHOkNN2Ed2Ng5VTYGY20A">
+    <generalization xmi:id="_ShqSgNN2Ed2Ng5VTYGY20A" general="_zerioNN1Ed2Ng5VTYGY20A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_LYsEsNN2Ed2Ng5VTYGY20A" supplier="_zVTPENNzEd2Ng5VTYGY20A" client="_zerioNN1Ed2Ng5VTYGY20A"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_OMHOkNN2Ed2Ng5VTYGY20A" supplier="_uW1xANNzEd2Ng5VTYGY20A" client="_855f4NN1Ed2Ng5VTYGY20A"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_XION8NN2Ed2Ng5VTYGY20A" name="BaseCompFactoryImpl" clientDependency="_XwJJkNN2Ed2Ng5VTYGY20A">
+    <interfaceRealization xmi:id="_XwJJkNN2Ed2Ng5VTYGY20A" supplier="_zerioNN1Ed2Ng5VTYGY20A" client="_XION8NN2Ed2Ng5VTYGY20A" contract="_zerioNN1Ed2Ng5VTYGY20A"/>
+    <ownedOperation xmi:id="_6cdXoNN2Ed2Ng5VTYGY20A" name="create">
+      <ownedParameter xmi:id="_7h4HkNN2Ed2Ng5VTYGY20A" direction="return"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Zfb88NN2Ed2Ng5VTYGY20A" name="GenericCompFactoryImpl" clientDependency="_bPXCcNN2Ed2Ng5VTYGY20A">
+    <generalization xmi:id="_tD5bENN2Ed2Ng5VTYGY20A" general="_XION8NN2Ed2Ng5VTYGY20A"/>
+    <interfaceRealization xmi:id="_bPXCcNN2Ed2Ng5VTYGY20A" supplier="_855f4NN1Ed2Ng5VTYGY20A" client="_Zfb88NN2Ed2Ng5VTYGY20A" contract="_855f4NN1Ed2Ng5VTYGY20A"/>
+    <ownedOperation xmi:id="_Eo6kkNN3Ed2Ng5VTYGY20A" name="create">
+      <ownedParameter xmi:id="_GZWncNN3Ed2Ng5VTYGY20A" direction="return"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_g0qeENN2Ed2Ng5VTYGY20A" name="dependencies" memberEnd="_g0qeEdN2Ed2Ng5VTYGY20A _g0rFItN2Ed2Ng5VTYGY20A">
+    <ownedEnd xmi:id="_g0qeEdN2Ed2Ng5VTYGY20A" name="src" type="_XD5ZgNN0Ed2Ng5VTYGY20A" association="_g0qeENN2Ed2Ng5VTYGY20A">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_g0rFIdN2Ed2Ng5VTYGY20A" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_g0rFINN2Ed2Ng5VTYGY20A" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Package>
