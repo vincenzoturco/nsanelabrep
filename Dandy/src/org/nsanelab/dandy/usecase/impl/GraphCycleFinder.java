@@ -56,6 +56,7 @@ public class GraphCycleFinder {
         ICycleFinder cycleFinder;
 
         while (!this.vertices.isEmpty()) {
+            System.out.println("esecuzione cyclefinder - elementi da visit.: "+this.vertices);
             tmpComp = this.vertices.iterator().next();
             cycleFinder = this.finderCreatorDelegate.create();
             cycleFinder.setGraph(this.graph);
@@ -63,6 +64,7 @@ public class GraphCycleFinder {
             this.detectedCycles.addAll(cycleFinder.getFoundCycles());
             this.vertices.removeAll(cycleFinder.getVisitedSubtree());
             this.vertices.remove(tmpComp);
+            System.out.println("sottoalbero visitato: "+cycleFinder.getVisitedSubtree());
         }
 
     }
