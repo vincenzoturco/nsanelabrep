@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import java.util.LinkedHashSet;
+import java.util.StringTokenizer;
 import org.nsanelab.dandy.domain.iface.IBaseDependency;
 import org.nsanelab.dandy.domain.iface.IGenericComp;
 import org.nsanelab.dandy.domain.iface.IGraphVisitor;
@@ -81,14 +82,32 @@ public class GenericComp implements IGenericComp, Serializable {
 
     public String toString() {
         String retVal;
-        retVal = this.vendor + "/" + this.name;
-        retVal = this.vendor+"/..." + retVal.substring(retVal.lastIndexOf('/'));
+        String[] nameTokens;
+        String displayName;
+        int tokNum;
+        boolean longName, veryLongName;
+
+        nameTokens = this.name.split("/");
+        tokNum = nameTokens.length;
+
+        longName = tokNum > 1;
+        veryLongName = tokNum > 2;
+
+        retVal = this.vendor + "/";
+        if (veryLongName) {
+            retVal += ".../";
+        }
+        if (longName) {
+            retVal += nameTokens[tokNum - 2] + "/";
+        }
+
+        retVal += nameTokens[tokNum - 1];
 
         return retVal;
     }
 
     @Override
-    public void accept(IGraphVisitor visitor) throws GraphTraversalException{
+    public void accept(IGraphVisitor visitor) throws GraphTraversalException {
         visitor.visit(this);
     }
 }
